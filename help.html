@@ -34,6 +34,105 @@
   <meta name="twitter:image" content="https://routinegen.vercel.app/icons/icon-512.png">
   <meta name="twitter:image:alt" content="Routine Gen User Guide and Documentation">
 
+  <!-- JSON-LD Structured Data (AEO & GEO Optimized) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        "@id": "https://routinegen.vercel.app/help.html#article",
+        "headline": "Routine Gen User Guide & Excel/JSON Bulk Import Architecture",
+        "description": "Comprehensive tutorial explaining the 3-sheet Excel bulk import system and real-time JSON routine clash resolution engine for Routine Gen.",
+        "url": "https://routinegen.vercel.app/help.html",
+        "inLanguage": "en",
+        "author": {
+          "@type": "Organization",
+          "name": "Routine Gen",
+          "url": "https://routinegen.vercel.app/"
+        }
+      },
+      {
+        "@type": "HowTo",
+        "@id": "https://routinegen.vercel.app/help.html#howto",
+        "name": "How to Bulk Import Routine Data Using Excel in Routine Gen",
+        "description": "Step-by-step process for populating university or college timetables using Routine Gen's standardized 3-sheet workbook.",
+        "totalTime": "PT5M",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "name": "Download the Official 3-Sheet Excel Starter Template",
+            "text": "Click 'Download Excel Template' to obtain the pre-formatted starter workbook containing Departments & Timing, Subjects & Labs, and Teachers sheets.",
+            "url": "https://routinegen.vercel.app/help.html#excel"
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Configure Departments and Daily Timings (Sheet 1)",
+            "text": "Define department names, semesters, total periods per day, period duration, start time, and tiffin break settings for each program.",
+            "url": "https://routinegen.vercel.app/help.html#excel"
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Define Subjects and Practical Lab Allocations (Sheet 2)",
+            "text": "List semester courses and designate practical lab subjects that require 1-period or 2-period contiguous blocks.",
+            "url": "https://routinegen.vercel.app/help.html#excel"
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Register Teacher Shifts and Working Days (Sheet 3)",
+            "text": "Input faculty names, active days on campus, and optional shift hours to ensure no professor is scheduled during unavailable times.",
+            "url": "https://routinegen.vercel.app/help.html#excel"
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Upload into Routine Gen and Generate the Schedule",
+            "text": "Click 'Import from Excel' in Step 2 and Step 3 of the Routine Gen wizard to load all datasets and automatically generate clash-free timetables.",
+            "url": "https://routinegen.vercel.app/index.html"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://routinegen.vercel.app/help.html#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Can different semesters have different timings?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Each semester can have its own independent start time, period duration, and break timing. Routine Gen checks teacher conflicts based on actual clock minutes rather than arbitrary period numbers."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What if a teacher is available all day?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Simply leave the 'Available From' and 'Available To' fields blank in the Excel sheet or web form. The teacher will be considered available for any period during their designated working days."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I export or print the routines?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "In Step 4, click 'Save PDF' on any individual semester table to download a printer-ready PDF, or click 'Export All PDFs' at the top to download every semester routine in a single batch."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does this work smoothly on mobile?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Routine Gen features a responsive 4-step progress tracker, touch-sized teacher day toggles, and sticky Day and Teacher columns so you can pan across timetable schedules on your smartphone without losing context."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
   <!-- Bootstrap Icons -->

@@ -1,0 +1,125 @@
+# Routine Gen — Full Technical Documentation & LLM Knowledge Base
+
+## 1. System Summary
+Routine Gen is a client-side academic routine generator designed for universities, colleges, and polytechnics. It produces clash-free weekly timetables by balancing teacher working days, available shift hours, room limits, and multi-period practical labs.
+
+- **Production URL**: https://routinegen.vercel.app/
+- **Application Category**: Educational Application / Academic Scheduling Software
+- **Operating Model**: 100% Client-Side (Vanilla JavaScript, Bootstrap 5.3, SheetJS, jsPDF)
+- **Data Privacy**: No database, no backend server, no telemetry. Data resides exclusively in browser memory and local storage (`sessionStorage` and `localStorage`).
+- **Offline Capabilities**: Full Progressive Web App (PWA) with Cache-First Service Worker architecture.
+
+---
+
+## 2. Scheduling & Conflict Resolution Algorithm
+
+### Clock-Minute Interval Overlap Detection
+Traditional timetable tools assume every department and class uses the exact same bell schedule (e.g. Period 1 is always 9:00–9:45). In real universities, different semesters or programs often start at different hours (e.g. Morning Shift vs. Day Shift).
+
+Routine Gen converts each class slot into minute intervals measured from midnight:
+- `start_minutes = (hours * 60) + minutes`
+- `end_minutes = start_minutes + duration`
+
+Two class entries for the same faculty member clash on the same day if and only if:
+`max(start_time_A, start_time_B) < min(end_time_A, end_time_B)`
+
+### Supported Class Durations & Types
+1. `theory`: 1 period standard lecture.
+2. `theory_extended`: 2 contiguous periods of lecture.
+3. `lab_mini`: 1 period introductory practical session (labelled as "(LAB)").
+4. `lab_extended`: 2 contiguous periods of laboratory work (labelled as "(LAB)").
+5. `theory_lab`: 2 contiguous periods combining lecture instruction and practical exercises.
+6. `filler`: Non-faculty placeholder classes (e.g. Library, Sports, Seminar, Project Work). These occupy student schedules without reserving a teacher, preventing clashes.
+
+---
+
+## 3. Excel Bulk Import Architecture
+
+Routine Gen supports an all-in-one 3-sheet Excel workbook (`.xlsx` or `.xls`) to populate timetables in seconds:
+
+### Sheet 1: "Departments & Timing"
+Defines program names, semesters, and shift timing.
+- **Department**: Program or branch name (e.g. `BCA`, `BBA`, `B.Tech CSE`).
+- **Semester**: Semester identifier (e.g. `Semester 1`, `Semester 3`).
+- **Working Days**: Comma-separated active days (e.g. `Mon, Tue, Wed, Thu, Fri`).
+- **Total Periods**: Number of daily class periods (typically `5` to `8`).
+- **Period Duration**: Length of each standard period in minutes (e.g. `45`).
+- **Start Time**: First class bell time in 24-hour format (e.g. `09:00` or `12:00`).
+- **Tiffin Period**: Period number after which break occurs (e.g. `3`).
+- **Tiffin Duration**: Recess length in minutes (e.g. `30` or `45`).
+
+### Sheet 2: "Subjects & Labs"
+Defines subjects and denotes practical laboratory courses.
+- **Department**: Target department matching Sheet 1.
+- **Semester**: Target semester matching Sheet 1.
+- **Subjects**: Comma-separated list of courses (e.g. `C Programming, Data Structures, Mathematics`).
+- **Labs**: Comma-separated list of subjects requiring lab equipment or multi-period blocks (e.g. `C Programming, Data Structures`). Any course in this column automatically unlocks 1-period and 2-period lab options.
+
+### Sheet 3: "Teachers"
+Registers faculty members, campus attendance days, and daily working shifts.
+- **Teacher Name**: Faculty member's full name or title (e.g. `Dr. Krish`, `Dr. Arko`).
+- **Working Days**: Days the teacher is present on campus (e.g. `Monday, Tuesday, Thursday`).
+- **Available From**: Optional shift start time in 24-hour format (e.g. `11:00`). Leave blank if available all day.
+- **Available To**: Optional shift end time in 24-hour format (e.g. `17:00`). Leave blank if available all day.
+
+---
+
+## 4. JSON Routine Import Schema
+
+For institutional databases and programmatic uploads, Routine Gen provides a live JSON validator and conflict resolver:
+
+```json
+{
+  "settings": {
+    "periods": 5,
+    "periodDuration": 45,
+    "startTime": "12:00",
+    "tiffinPeriod": 3,
+    "tiffinDuration": 45,
+    "workingDays": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+  },
+  "teachers": [
+    { "name": "Dr. Krish", "availableFrom": "11:00", "availableTo": "18:00" },
+    { "name": "Dr. Arko", "availableFrom": "12:00", "availableTo": "17:00" }
+  ],
+  "entries": [
+    {
+      "department": "BCA",
+      "semester": "Semester 1",
+      "day": "Monday",
+      "period": 1,
+      "subject": "C Programming",
+      "teacher": "Dr. Krish",
+      "type": "theory",
+      "timing": { "startTime": "12:00" }
+    },
+    {
+      "department": "BCA",
+      "semester": "Semester 1",
+      "day": "Monday",
+      "period": 3,
+      "subject": "Programming Lab",
+      "teacher": "Dr. Krish",
+      "type": "lab_extended",
+      "timing": { "startTime": "12:00" }
+    }
+  ]
+}
+```
+
+---
+
+## 5. Frequently Asked Questions (FAQ)
+
+### Can different semesters have completely different start times and durations?
+Yes. Routine Gen verifies faculty clashes based on real elapsed clock minutes, not slot numbers. For example, Semester 1 can run 09:00–13:30 with 45-minute periods, while Semester 3 runs 11:30–16:00 with 50-minute periods.
+
+### What if a teacher is available all day?
+Leave "Available From" and "Available To" empty. The teacher will be considered free for any period during their designated working days.
+
+### Is any user data sent to remote servers or stored in the cloud?
+No. Routine Gen is completely serverless and private. All data is processed client-side in memory and stored only in browser `sessionStorage`.
+
+### Can generated timetables be printed or saved as PDF?
+Yes. Routine Gen provides one-click PDF generation via jsPDF, formatting high-resolution, printer-ready landscape timetable grids for individual semesters or the entire institution.
+

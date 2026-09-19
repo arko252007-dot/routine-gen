@@ -1,0 +1,21 @@
+# Routine Gen
+
+> Routine Gen (https://routinegen.vercel.app) is an open, free, 100% client-side academic routine and college timetable generator with automated teacher clash detection, multi-period lab allocation, and Excel/PDF export capabilities.
+
+## Overview
+Routine Gen simplifies academic schedule planning for universities, colleges, departments, and schools. All scheduling logic runs strictly inside the user's browser using client-side JavaScript. Zero institutional data, teacher names, or student rosters are ever sent to an external server or cloud database.
+
+## Core Capabilities
+- **Clock-Minute Conflict Resolution**: Computes schedule clashes using exact clock-time intervals rather than arbitrary period slots, enabling different semesters to follow independent start times, class lengths, and break timings.
+- **Multi-Period Lab Support**: Intelligently allocates theory (1 period), extended theory (2 periods), mini labs (1 period), extended labs (2 periods), and hybrid theory+lab blocks without teacher overlaps.
+- **Bulk Excel Import & Export**: Supports an all-in-one 3-sheet Excel format (`.xlsx`/`.xls`) covering Departments & Timings (Sheet 1), Subjects & Labs (Sheet 2), and Teachers Directory (Sheet 3).
+- **JSON Routine Importer**: Enables developers and administrators to paste structured timetable JSON and catch teacher conflicts in real time with one-click auto-placement.
+- **Progressive Web App (PWA)**: Works 100% offline via Service Worker caching and is installable on Windows, macOS, Android, and iOS.
+- **Printer-Ready PDF Export**: Generates high-resolution vector PDF schedules individually or in bulk via jsPDF.
+
+## Core Tools & Pages
+- [Main Routine Generator](https://routinegen.vercel.app/): Interactive 4-step wizard to configure bell settings, departments, semesters, teachers, and generate routines.
+- [User Guide & Excel Documentation](https://routinegen.vercel.app/help.html): Comprehensive tutorial, Excel template download, JSON anatomy, and FAQs.
+- [JSON Routine Importer](https://routinegen.vercel.app/json-import.html): Dedicated JSON routine validator, live conflict resolver, and busy teacher grid.
+- [Full LLM Context & Schemas](https://routinegen.vercel.app/llms-full.txt): Complete technical specification, column rules, JSON schema, and algorithm details.
+

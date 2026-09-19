@@ -34,30 +34,76 @@
   <meta name="twitter:image" content="https://routinegen.vercel.app/icons/icon-512.png">
   <meta name="twitter:image:alt" content="Routine Gen - Smart Academic Routine Generator">
 
-  <!-- JSON-LD Structured Data -->
+  <!-- JSON-LD Structured Data (AEO & GEO Optimized) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Routine Gen",
-    "alternateName": "Routine Gen - Smart Routine Generator",
-    "url": "https://routinegen.vercel.app/",
-    "applicationCategory": "EducationalApplication",
-    "operatingSystem": "Any",
-    "browserRequirements": "Requires JavaScript. Requires HTML5.",
-    "description": "A client-side intelligent academic routine and timetable generator featuring automated slot assignment, teacher conflict resolution, multi-period lab scheduling, and Excel or PDF exports.",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    },
-    "featureList": [
-      "Client-side timetable generation",
-      "Teacher availability and clash detection",
-      "Multi-period lab allocation",
-      "Excel import and export (SheetJS)",
-      "PDF routine export (jsPDF)",
-      "Offline Progressive Web App (PWA) support"
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://routinegen.vercel.app/#webapp",
+        "name": "Routine Gen",
+        "alternateName": ["RoutineGen", "Routine Gen - Smart Routine Generator"],
+        "url": "https://routinegen.vercel.app/",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript. Requires HTML5.",
+        "description": "Routine Gen is a free, 100% client-side academic routine and college timetable generator with automated teacher clash detection, multi-period lab allocation, and Excel/PDF export capabilities.",
+        "inLanguage": "en",
+        "isAccessibleForFree": true,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "featureList": [
+          "100% client-side timetable generation and conflict resolution",
+          "Teacher availability check based on actual clock minutes",
+          "Multi-period practical lab allocation (1 and 2 periods)",
+          "3-Sheet Excel bulk import and template generator (.xlsx/.xls)",
+          "Printer-ready landscape PDF export via jsPDF",
+          "Progressive Web App (PWA) with full offline caching",
+          "Zero server telemetry — complete student and faculty privacy"
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://routinegen.vercel.app/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is Routine Gen?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Routine Gen is a free, client-side academic timetable generator designed for colleges, universities, and schools. It automatically schedules lectures and practical labs while preventing teacher overlaps across different departments and semesters."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does Routine Gen detect and prevent teacher clashes?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Routine Gen computes timetable overlaps based on actual elapsed clock minutes rather than rigid period slots. If a teacher is assigned in Department A from 10:00 to 11:30, the algorithm prevents conflicting assignments in Department B during overlapping minutes."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is timetable or faculty data stored on any server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Routine Gen executes entirely inside the user's web browser using JavaScript. No institutional data, faculty rosters, or timetable records are transmitted to or stored on remote servers."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can Routine Gen import schedules directly from Microsoft Excel?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Routine Gen supports a standardized 3-sheet Excel workbook (.xlsx/.xls) to bulk import Departments & Timings (Sheet 1), Subjects & Labs (Sheet 2), and Teachers Directory (Sheet 3)."
+            }
+          }
+        ]
+      }
     ]
   }
   </script>

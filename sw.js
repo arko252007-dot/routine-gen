@@ -5,7 +5,7 @@
  * Excel import/export (SheetJS), and PDF timetable rendering (jsPDF).
  */
 
-const CACHE_NAME = 'routinegen-cache-v5';
+const CACHE_NAME = 'routinegen-cache-v6';
 
 // All critical core pages, assets, and external CDN dependencies
 const PRECACHE_ASSETS = [
@@ -17,6 +17,8 @@ const PRECACHE_ASSETS = [
   '/manifest.json',
   '/robots.txt',
   '/sitemap.xml',
+  '/llms.txt',
+  '/llms-full.txt',
 
   // Local Stylesheets
   '/css/styles.css',
