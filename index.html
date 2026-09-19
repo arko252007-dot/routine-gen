@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Routine Gen - Smart Academic Routine Generator</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#09090b">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Routine Gen">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+
+  <meta name="description" content="Generate conflict-free college routines and timetables client-side with smart slot assignment, teacher availability checks, and Excel or PDF exports.">
+  <link rel="canonical" href="https://routinegen.vercel.app/">
+
+  <!-- Open Graph / Facebook / WhatsApp -->
+  <meta property="og:site_name" content="Routine Gen">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://routinegen.vercel.app/">
+  <meta property="og:title" content="Routine Gen - Smart Academic Routine Generator">
+  <meta property="og:description" content="Generate conflict-free college routines and timetables client-side with smart slot assignment, teacher availability checks, and Excel or PDF exports.">
+  <meta property="og:image" content="https://routinegen.vercel.app/icons/icon-512.png">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+  <meta property="og:image:alt" content="Routine Gen - Smart Academic Routine Generator">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Routine Gen - Smart Academic Routine Generator">
+  <meta name="twitter:description" content="Generate conflict-free college routines and timetables client-side with smart slot assignment, teacher availability checks, and Excel or PDF exports.">
+  <meta name="twitter:image" content="https://routinegen.vercel.app/icons/icon-512.png">
+  <meta name="twitter:image:alt" content="Routine Gen - Smart Academic Routine Generator">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Routine Gen",
+    "alternateName": "Routine Gen - Smart Routine Generator",
+    "url": "https://routinegen.vercel.app/",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript. Requires HTML5.",
+    "description": "A client-side intelligent academic routine and timetable generator featuring automated slot assignment, teacher conflict resolution, multi-period lab scheduling, and Excel or PDF exports.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "Client-side timetable generation",
+      "Teacher availability and clash detection",
+      "Multi-period lab allocation",
+      "Excel import and export (SheetJS)",
+      "PDF routine export (jsPDF)",
+      "Offline Progressive Web App (PWA) support"
+    ]
+  }
+  </script>
+
+  <meta name="google-site-verification" content="nARPq0-BdEiWT4SyoWrPRlOJbcvaBtam5SRCvgxjO2M" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/styles.css?v=2.2">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+  <script>
+    (function() {
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('from') === 'help' || urlParams.get('openExcel') === 'true') {
+          sessionStorage.setItem('routine_help_seen_session', 'true');
+        }
+        const dontShow = localStorage.getItem('routine_help_dont_show') === 'true';
+        const seenInSession = sessionStorage.getItem('routine_help_seen_session') === 'true';
+        if (!dontShow && !seenInSession) {
+          window.location.replace('help.html');
+        }
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body class="bg-light-subtle min-vh-100 py-3 py-md-5">
+  <div class="app-container">
+
+    <header class="d-flex flex-row align-items-center justify-content-between pb-3 mb-3 pb-md-4 mb-md-4 border-bottom gap-2">
+      <div class="d-flex align-items-center gap-2 gap-sm-3">
+        <div>
+          <h1 class="h3 mb-0 fw-bold text-dark tracking-tight d-flex align-items-center gap-2">
+            <i class="bi bi-calendar3-range text-primary"></i> Routine Gen
+          </h1>
+          <p class="text-muted small mb-0 d-none d-sm-block">Generate conflict-free academic schedules effortlessly</p>
+        </div>
+      </div>
+      <div class="d-flex align-items-center gap-1.5 gap-sm-2 flex-wrap justify-content-end">
+        <button type="button" class="btn btn-outline-success nav-icon-btn px-2.5 px-sm-3 py-1.5 py-sm-2 d-flex align-items-center gap-1.5 fw-semibold" data-bs-toggle="modal" data-bs-target="#excelActionModal" title="Excel: Download Template or Import">
+          <i class="bi bi-file-earmark-excel"></i> <span class="d-none d-sm-inline">Excel</span>
+        </button>
+        <a href="json-import.html" class="btn btn-outline-primary nav-icon-btn px-2.5 px-sm-3 py-1.5 py-sm-2 d-flex align-items-center gap-1.5 fw-semibold" title="Add routine entries via JSON">
+          <i class="bi bi-filetype-json"></i> <span class="d-none d-sm-inline">JSON</span>
+        </a>
+        <a href="help.html" class="btn btn-outline-secondary nav-icon-btn px-2.5 px-sm-3 py-1.5 py-sm-2 d-flex align-items-center gap-1.5 fw-semibold" title="User Guide &amp; Help">
+          <i class="bi bi-question-circle"></i> <span class="d-none d-sm-inline">Help</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- Steps... -->
+    <div class="row mb-3 mb-md-4 justify-content-center">
+      <div class="col-12">
+        <div class="card border-0 shadow-sm wizard-card">
+          <div class="card-body p-0">
+            <ul id="progressTracker" class="nav nav-pills nav-fill">
+              <li class="nav-item">
+                <span class="nav-link step-item active" data-step="1">
+                  <i class="bi bi-gear-fill"></i><span class="d-none d-sm-inline ms-1">Settings</span><span class="d-sm-none ms-1">Setup</span>
+                </span>
+              </li>
+              <li class="nav-item">
+                <span class="nav-link step-item text-muted" data-step="2">
+                  <i class="bi bi-building-fill"></i><span class="d-none d-sm-inline ms-1">Departments</span><span class="d-sm-none ms-1">Depts</span>
+                </span>
+              </li>
+              <li class="nav-item">
+                <span class="nav-link step-item text-muted" data-step="3">
+                  <i class="bi bi-person-workspace"></i><span class="d-none d-sm-inline ms-1">Teachers</span><span class="d-sm-none ms-1">Faculty</span>
+                </span>
+              </li>
+              <li class="nav-item">
+                <span class="nav-link step-item text-muted" data-step="4">
+                  <i class="bi bi-calendar-check-fill"></i><span class="d-none d-sm-inline ms-1">Routines</span><span class="d-sm-none ms-1">Routine</span>
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sections -->
+    <main>
+      <!-- 1: Settings -->
+      <section id="step1">
+        <div class="card border-0 shadow-sm mb-4">
+          <div class="card-header bg-white border-0 pt-4 pb-0">
+            <h2 class="h4 card-title fw-bold text-dark d-flex align-items-center gap-2">
+              <i class="bi bi-gear-fill text-primary"></i> Global Configuration
+            </h2>
+            <p class="text-muted small">Establish default values for the scheduling generation engine.</p>
+          </div>
+          <div class="card-body">
+            <div class="row g-3 g-md-4">
+              <div class="col-12 col-md-6 col-xl-4">
+                <label for="settings-periods" class="form-label fw-semibold text-secondary small">Total Periods per Day</label>
+                <input type="number" class="form-control form-control-lg" id="settings-periods" value="8" min="1" max="12">
+              </div>
+              <div class="col-12 col-md-6 col-xl-4">
+                <label for="settings-duration" class="form-label fw-semibold text-secondary small">Period Duration (mins)</label>
+                <input type="number" class="form-control form-control-lg" id="settings-duration" value="45" min="15" max="180">
+              </div>
+              <div class="col-12 col-md-6 col-xl-4">
+                <label for="settings-time" class="form-label fw-semibold text-secondary small">College Start Time</label>
+                <input type="time" class="form-control form-control-lg" id="settings-time" value="09:00">
+              </div>
+              <div class="col-12 col-md-6 col-xl-6">
+                <label for="settings-tiffin-period" class="form-label fw-semibold text-secondary small">Tiffin Break Period (After period #)</label>
+                <input type="number" class="form-control form-control-lg" id="settings-tiffin-period" value="4" min="1" max="11">
+              </div>
+              <div class="col-12 col-md-6 col-xl-6">
+                <label for="settings-tiffin-duration" class="form-label fw-semibold text-secondary small">Tiffin Duration (mins)</label>
+                <input type="number" class="form-control form-control-lg" id="settings-tiffin-duration" value="30" min="15" max="120">
+              </div>
+            </div>
+            <div class="d-flex justify-content-end mt-4 pt-3 border-top border-light">
+              <button class="btn btn-primary btn-lg px-4 py-2.5 fw-semibold shadow-sm d-flex align-items-center justify-content-center gap-2 w-100 w-sm-auto" onclick="goToStep(2)">
+                Next Step <i class="bi bi-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2: Departments & Semesters -->
+      <section id="step2" class="hidden">
+        <div class="card border-0 shadow-sm mb-4">
+          <div class="card-header bg-white border-0 pt-3 pt-md-4 pb-0 d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-2 gap-md-3">
+            <div class="header-title-wrap flex-grow-1">
+              <h2 class="card-title fw-bold text-dark d-flex align-items-center gap-2 mb-1 fs-5 fs-md-4">
+                <i class="bi bi-building-fill text-primary flex-shrink-0"></i>
+                <span><span class="d-none d-sm-inline">Manage </span>Departments &amp; Semesters</span>
+              </h2>
+              <p class="text-muted small mb-0 d-none d-md-block">Each department can have its own semesters, subjects, and class timings.</p>
+            </div>
+            <div class="d-flex gap-2 flex-wrap w-100 w-sm-auto justify-content-sm-end flex-shrink-0">
+              <button type="button" class="btn btn-sm btn-outline-secondary flex-fill flex-sm-grow-0" id="btn-download-dept-template" title="Download Excel template for departments, subjects and timings">
+                <i class="bi bi-download"></i> <span class="d-none d-sm-inline">Download Template</span><span class="d-sm-none">Template</span>
+              </button>
+              <button type="button" class="btn btn-sm btn-primary flex-fill flex-sm-grow-0" id="btn-import-dept-excel" title="Import departments, subjects and timings from an Excel file">
+                <i class="bi bi-file-earmark-excel"></i> <span class="d-none d-sm-inline">Import from Excel</span><span class="d-sm-none">Import</span>
+              </button>
+              <input type="file" id="excel-file-dept" accept=".xlsx, .xls" class="d-none">
+            </div>
+          </div>
+          <div class="card-body">
+            <div id="dept-excel-status" class="alert d-none mb-4 small" role="alert"></div>
+            <div class="row g-4">
+              <!-- Department Management Card -->
+              <div class="col-12 col-lg-5 col-xxl-4">
+                <div class="p-4 bg-light rounded-4 border border-light-subtle h-100 d-flex flex-column">
+                  <h3 class="fw-bold mb-3 small text-uppercase tracking-wider text-secondary">Add Department</h3>
+                  <form id="dept-form" class="d-flex gap-2 mb-4">
+                    <input type="text" class="form-control" id="dept-name" placeholder="e.g. BCA" required>
+                    <button type="submit" class="btn btn-primary fw-semibold shadow-sm px-3" id="btn-submit-dept">
+                      <i class="bi bi-plus-lg"></i>
+                    </button>
+                  </form>
+
+                  <div class="border-top border-light-subtle pt-4 d-flex flex-column flex-grow-1" style="min-height: 0;">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                      <h3 class="fw-bold mb-0 small text-uppercase tracking-wider text-secondary">
+                        Registered Departments
+                      </h3>
+                      <span class="badge bg-secondary-subtle text-secondary rounded-pill px-2.5 py-1" id="dept-count-badge">0</span>
+                    </div>
+                    <ul id="dept-list" class="list-group border-0 p-0 mb-0 custom-slim-scrollbar flex-grow-1" style="overflow-y: auto; min-height: 0;">
+                      <!-- JavaScript -->
+                    </ul>
+                    <div id="dept-empty" class="text-center text-muted my-auto py-5">
+                      <i class="bi bi-building text-secondary opacity-50 mb-2 fs-1 d-block"></i>
+                      <p class="mb-0">No departments added yet. Add at least one to continue.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Semester Management Panel -->
+              <div class="col-12 col-lg-7 col-xxl-8">
+                <div id="semester-panel-placeholder" class="text-center text-muted p-5 border border-light-subtle rounded-4 bg-light h-100 d-flex flex-column justify-content-center align-items-center">
+                  <i class="bi bi-layers text-secondary opacity-50 mb-3 fs-1 d-block"></i>
+                  <p class="mb-0">Add a department, then click <strong>Manage Semesters</strong> to add Sem 1, 2, 3, 4&hellip; along with their subjects and timings.</p>
+                </div>
+
+                <div id="semester-panel" class="p-4 bg-light rounded-4 border border-light-subtle h-100 d-none d-flex flex-column">
+                  <h3 class="fw-bold mb-3 small text-uppercase tracking-wider text-secondary">
+                    Semesters for <span id="semester-panel-dept-name" class="text-primary"></span>
+                  </h3>
+
+                  <div id="existing-semester-list" class="mb-4">
+                    <!-- JavaScript -->
+                  </div>
+
+                  <div class="p-4 bg-body rounded-4 border border-light-subtle mt-auto">
+                    <label class="form-label fw-bold small text-secondary text-uppercase tracking-wide mb-2.5 d-block">Add / Edit Semester</label>
+
+                    <div class="mb-3 d-flex flex-wrap gap-2">
+                      <button type="button" class="btn btn-sm btn-outline-secondary sem-preset-btn" data-label="Semester 1">Sem 1</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary sem-preset-btn" data-label="Semester 2">Sem 2</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary sem-preset-btn" data-label="Semester 3">Sem 3</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary sem-preset-btn" data-label="Semester 4">Sem 4</button>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="sem-label" class="form-label text-muted small mb-1">Semester Label</label>
+                      <input type="text" class="form-control form-control-sm" id="sem-label" placeholder="e.g. Semester 1">
+                    </div>
+
+                    <div class="mb-4">
+                      <label class="form-label text-muted small mb-1 d-block">Timing for this semester (independent from other semesters &mdash; a class only clashes when its actual clock time overlaps another one)</label>
+                      <div class="row g-2">
+                        <div class="col-6 col-md-4 col-xl">
+                          <label class="form-label text-muted" style="font-size: 0.7rem;">Periods/day</label>
+                          <input type="number" class="form-control form-control-sm" id="sem-periods" min="1" max="12">
+                        </div>
+                        <div class="col-6 col-md-4 col-xl">
+                          <label class="form-label text-muted" style="font-size: 0.7rem;">Period (mins)</label>
+                          <input type="number" class="form-control form-control-sm" id="sem-duration" min="15" max="180">
+                        </div>
+                        <div class="col-6 col-md-4 col-xl">
+                          <label class="form-label text-muted" style="font-size: 0.7rem;">Start Time</label>
+                          <input type="time" class="form-control form-control-sm" id="sem-start-time">
+                        </div>
+                        <div class="col-6 col-md-4 col-xl">
+                          <label class="form-label text-muted" style="font-size: 0.7rem;">Tiffin after period #</label>
+                          <input type="number" class="form-control form-control-sm" id="sem-tiffin-period" min="1" max="11">
+                        </div>
+                        <div class="col-6 col-md-4 col-xl">
+                          <label class="form-label text-muted" style="font-size: 0.7rem;">Tiffin (mins)</label>
+                          <input type="number" class="form-control form-control-sm" id="sem-tiffin-duration" min="15" max="120">
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Subject Builder -->
+                    <div class="builder-subcard">
+                      <label class="form-label fw-bold small text-secondary text-uppercase tracking-wide mb-2 d-block">Add Subjects for this Semester</label>
+                      <div class="row g-2 align-items-end">
+                        <div class="col-12 col-sm-5 col-xl-5">
+                          <label for="subject-input-name" class="form-label text-muted small mb-1">Subject</label>
+                          <input type="text" class="form-control form-control-sm" id="subject-input-name" placeholder="e.g. OS">
+                        </div>
+                        <div class="col-9 col-sm-5 col-xl-5">
+                          <label for="subject-input-type" class="form-label text-muted small mb-1">Type</label>
+                          <select class="form-select form-select-sm" id="subject-input-type">
+                            <option value="theory">Theory (1 period)</option>
+                            <option value="theory_extended">Theory Extended (2 periods)</option>
+                            <option value="lab_mini">Lab (1 period)</option>
+                            <option value="lab_extended">Lab Extended (2 periods)</option>
+                            <option value="theory_lab">Theory + Lab (2 periods)</option>
+                          </select>
+                        </div>
+                        <div class="col-3 col-sm-2 col-xl-2">
+                          <button type="button" id="btn-add-subject-to-list" class="btn btn-sm btn-outline-primary w-100 fw-bold d-flex justify-content-center align-items-center gap-1" style="padding-top: 0.28rem; padding-bottom: 0.28rem;" title="Add Subject">
+                            <i class="bi bi-plus-lg"></i> <span class="d-inline d-sm-none">Add</span>
+                          </button>
+                        </div>
+                      </div>
+                      <div id="builder-subjects-list" class="d-flex flex-wrap gap-1.5 mt-3">
+                        <!-- Temp subjects badges -->
+                      </div>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                      <button type="button" class="btn btn-outline-secondary px-3 fw-semibold" id="btn-cancel-semester">Cancel</button>
+                      <button type="button" class="btn btn-primary flex-fill py-2 fw-semibold shadow-sm" id="btn-save-semester" disabled>
+                        <i class="bi bi-plus-lg me-1"></i> Save Semester
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-between mt-4 pt-3 border-top border-light">
+              <button class="btn btn-outline-secondary px-3 px-sm-4 py-2 fw-semibold d-flex align-items-center gap-2" onclick="goToStep(1)" title="Back to Step 1">
+                <i class="bi bi-arrow-left"></i> <span class="d-none d-sm-inline">Back</span>
+              </button>
+              <button class="btn btn-primary px-3 px-sm-4 py-2 fw-semibold shadow-sm d-flex align-items-center gap-2" id="btn-next-dept" onclick="goToStep(3)" disabled>
+                <span class="d-none d-sm-inline">Next Step</span><span class="d-sm-none">Next</span> <i class="bi bi-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3: Teachers & Assignments -->
+      <section id="step3" class="hidden">
+        <div class="card border-0 shadow-sm mb-4">
+          <div class="card-header bg-white border-0 pt-3 pt-md-4 pb-0 d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-2 gap-md-3">
+            <div class="header-title-wrap flex-grow-1">
+              <h2 class="card-title fw-bold text-dark d-flex align-items-center gap-2 mb-1 fs-5 fs-md-4">
+                <i class="bi bi-person-workspace text-primary flex-shrink-0"></i>
+                <span><span class="d-none d-sm-inline">Manage </span>Teachers &amp; Assignments</span>
+              </h2>
+              <p class="text-muted small mb-0 d-none d-md-block">Configure teacher details, active working days, and course loads.</p>
+            </div>
+            <div class="d-flex gap-2 flex-wrap w-100 w-sm-auto justify-content-sm-end flex-shrink-0">
+              <button type="button" class="btn btn-sm btn-outline-secondary flex-fill flex-sm-grow-0" id="btn-download-teacher-template" title="Download Excel template for teachers">
+                <i class="bi bi-download"></i> <span class="d-none d-sm-inline">Download Template</span><span class="d-sm-none">Template</span>
+              </button>
+              <button type="button" class="btn btn-sm btn-primary flex-fill flex-sm-grow-0" id="btn-import-teacher-excel" title="Import teachers from an Excel file">
+                <i class="bi bi-file-earmark-excel"></i> <span class="d-none d-sm-inline">Import from Excel</span><span class="d-sm-none">Import</span>
+              </button>
+              <input type="file" id="excel-file-teacher" accept=".xlsx, .xls" class="d-none">
+            </div>
+          </div>
+          <div class="card-body">
+            <div id="teacher-excel-status" class="alert d-none mb-4 small" role="alert"></div>
+            <div class="row g-4">
+              <!-- Add Teacher Form Card -->
+              <div class="col-12 col-lg-5 col-xxl-4">
+                <div class="p-4 bg-light rounded-4 border border-light-subtle h-100 d-flex flex-column">
+                  <h3 class="fw-bold mb-3 small text-uppercase tracking-wider text-secondary">Add New Teacher</h3>
+                  
+                  <div class="mb-3">
+                    <label for="teacher-name" class="form-label fw-semibold text-secondary small">Teacher Name</label>
+                    <input type="text" class="form-control" id="teacher-name" placeholder="e.g. Dr. Krish">
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="form-label fw-semibold text-secondary d-block small">Working Days</label>
+                    <div class="d-flex flex-wrap gap-2" id="teacher-days">
+                      <input type="checkbox" class="btn-check" id="day-mon" value="Monday" autocomplete="off">
+                      <label class="btn btn-outline-secondary btn-sm px-2.5 py-1.5 fw-semibold flex-fill text-center" for="day-mon">Mon</label>
+
+                      <input type="checkbox" class="btn-check" id="day-tue" value="Tuesday" autocomplete="off">
+                      <label class="btn btn-outline-secondary btn-sm px-2.5 py-1.5 fw-semibold flex-fill text-center" for="day-tue">Tue</label>
+
+                      <input type="checkbox" class="btn-check" id="day-wed" value="Wednesday" autocomplete="off">
+                      <label class="btn btn-outline-secondary btn-sm px-2.5 py-1.5 fw-semibold flex-fill text-center" for="day-wed">Wed</label>
+
+                      <input type="checkbox" class="btn-check" id="day-thu" value="Thursday" autocomplete="off">
+                      <label class="btn btn-outline-secondary btn-sm px-2.5 py-1.5 fw-semibold flex-fill text-center" for="day-thu">Thu</label>
+
+                      <input type="checkbox" class="btn-check" id="day-fri" value="Friday" autocomplete="off">
+                      <label class="btn btn-outline-secondary btn-sm px-2.5 py-1.5 fw-semibold flex-fill text-center" for="day-fri">Fri</label>
+
+                      <input type="checkbox" class="btn-check" id="day-sat" value="Saturday" autocomplete="off">
+                      <label class="btn btn-outline-secondary btn-sm px-2.5 py-1.5 fw-semibold flex-fill text-center" for="day-sat">Sat</label>
+                    </div>
+                  </div>
+
+                  <div class="mb-4">
+                    <label class="form-label fw-semibold text-secondary d-block small">Available Hours <span class="text-muted fw-normal">(optional &mdash; leave blank if available all day)</span></label>
+                    <div class="row g-2">
+                      <div class="col-6">
+                        <label for="teacher-avail-start" class="form-label text-muted" style="font-size: 0.7rem;">From</label>
+                        <input type="time" class="form-control form-control-sm" id="teacher-avail-start">
+                      </div>
+                      <div class="col-6">
+                        <label for="teacher-avail-end" class="form-label text-muted" style="font-size: 0.7rem;">To</label>
+                        <input type="time" class="form-control form-control-sm" id="teacher-avail-end">
+                      </div>
+                    </div>
+                    <p class="text-muted mb-0 mt-1" style="font-size: 0.75rem;">If the teacher is only in college between certain hours (e.g. 1 PM&ndash;4 PM), classes outside that window won't be assigned to them.</p>
+                  </div>
+
+                  <!-- Assignment Subcard -->
+                  <div class="builder-subcard">
+                    <label class="form-label fw-bold small text-secondary text-uppercase tracking-wide mb-2 d-block">Assign Dept, Semester & Subject</label>
+                    <div class="row g-2">
+                      <div class="col-12">
+                        <label for="assign-dept" class="form-label text-muted small mb-1">Department</label>
+                        <select class="form-select form-select-sm" id="assign-dept">
+                          <option value="">-- Select Dept --</option>
+                        </select>
+                      </div>
+                      <div class="col-12 col-sm-6">
+                        <label for="assign-sem" class="form-label text-muted small mb-1">Semester</label>
+                        <select class="form-select form-select-sm" id="assign-sem" disabled>
+                          <option value="">-- Select Semester --</option>
+                        </select>
+                      </div>
+                      <div class="col-12 col-sm-6">
+                        <label for="assign-sub" class="form-label text-muted small mb-1">Subject</label>
+                        <select class="form-select form-select-sm" id="assign-sub" disabled>
+                          <option value="">-- Select Subject --</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="d-flex justify-content-end mt-3">
+                      <button id="btn-add-assign" class="btn btn-sm btn-outline-primary px-3 fw-bold d-flex justify-content-center align-items-center gap-1 w-100 w-sm-auto" disabled>
+                        <i class="bi bi-plus-lg"></i> Add Assignment
+                      </button>
+                    </div>
+                    <div id="temp-assignments-list" class="d-flex flex-column flex-sm-row flex-wrap gap-2 mt-3 w-100">
+                      <!-- Temp Badges populated dynamically -->
+                    </div>
+                  </div>
+
+                  <div class="d-flex gap-2 mt-auto">
+                    <button type="button" class="btn btn-outline-secondary px-3 fw-semibold d-none" id="btn-cancel-teacher">Cancel</button>
+                    <button id="btn-add-teacher" class="btn btn-primary flex-fill py-2.5 fw-semibold shadow-sm" disabled>
+                      <i class="bi bi-plus-lg me-1"></i> Add Teacher
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Teacher Directory Table Card -->
+              <div class="col-12 col-lg-7 col-xxl-8">
+                <div class="p-4 bg-light rounded-4 border border-light-subtle h-100 d-flex flex-column">
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h3 class="fw-bold mb-0 small text-uppercase tracking-wider text-secondary">Active Teachers Directory</h3>
+                    <span class="badge bg-secondary-subtle text-secondary rounded-pill px-2.5 py-1" id="teacher-count-badge">0</span>
+                  </div>
+                  <div class="teacher-table-wrapper flex-grow-1 border border-light-subtle rounded-3 bg-body custom-slim-scrollbar" style="min-height: 0;">
+                    <table class="table table-hover align-middle mb-0 teacher-directory-table">
+                      <thead class="table-light text-secondary small">
+                        <tr>
+                          <th class="fw-semibold ps-3" style="min-width: 150px; white-space: nowrap;">Name</th>
+                          <th class="fw-semibold" style="min-width: 120px; white-space: nowrap;">Working Days</th>
+                          <th class="fw-semibold" style="min-width: 130px;">Available Hours</th>
+                          <th class="fw-semibold" style="min-width: 180px;">Assignments</th>
+                          <th class="fw-semibold text-center" style="min-width: 90px;">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody id="teacher-list">
+                        <!-- JavaScript -->
+                      </tbody>
+                    </table>
+                  </div>
+                  <div id="teacher-empty" class="text-center text-muted my-auto py-5">
+                    <i class="bi bi-person-video3 text-secondary opacity-50 mb-2 fs-1 d-block"></i>
+                    <p class="mb-0">No teachers added yet. Register at least one to generate routine.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-between mt-4 pt-3 border-top border-light">
+              <button class="btn btn-outline-secondary px-3 px-sm-4 py-2 fw-semibold d-flex align-items-center gap-2" onclick="goToStep(2)" title="Back to Step 2">
+                <i class="bi bi-arrow-left"></i> <span class="d-none d-sm-inline">Back</span>
+              </button>
+              <button class="btn btn-success px-3 px-sm-4 py-2 fw-semibold shadow-sm d-flex align-items-center gap-2" id="btn-generate" onclick="generateRoutine()" disabled>
+                Generate Routine <i class="bi bi-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4: Generated Routines -->
+      <section id="step4" class="hidden">
+        <div id="routine-viewer">
+          <!-- JavaScript -->
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Restore Session Modal -->
+  <div class="modal fade" id="restoreModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="restoreModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow-lg">
+        <div class="modal-header border-0 py-3">
+          <h3 class="modal-title fs-5 fw-bold" id="restoreModalLabel">
+            <i class="bi bi-arrow-counterclockwise me-2"></i>Restore Session?
+          </h3>
+        </div>
+        <div class="modal-body p-4">
+          <p class="mb-0 text-secondary">We found a saved routine scheduling session. Would you like to resume from where you left off, or start a new scheduling session?</p>
+        </div>
+        <div class="modal-footer border-0 p-3 pt-0">
+          <button type="button" class="btn btn-outline-secondary px-4" id="btn-start-new">Start New</button>
+          <button type="button" class="btn btn-primary px-4 fw-bold" id="btn-resume-session">Let's Go</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Conflict Resolution Modal: fills a conflicting slot with a Library/custom class -->
+  <div class="modal fade" id="fillerModal" tabindex="-1" aria-labelledby="fillerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow-lg">
+        <div class="modal-header border-0 py-3">
+          <h3 class="modal-title fs-5 fw-bold" id="fillerModalLabel">
+            <i class="bi bi-magic me-2"></i>Resolve Conflict Slot
+          </h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4 pt-2">
+          <div id="filler-context" class="p-2 mb-3 bg-light rounded-3 border border-light-subtle small text-secondary"></div>
+
+          <div class="mb-3">
+            <label for="filler-slot" class="form-label fw-semibold small text-secondary">Target Period Slot</label>
+            <select class="form-select" id="filler-slot"></select>
+            <div id="filler-slot-note" class="small text-muted mt-1">Select which period slot to fill with this class.</div>
+          </div>
+
+          <div class="mb-3">
+            <label for="filler-choice" class="form-label fw-semibold small text-secondary">Class to insert</label>
+            <select class="form-select" id="filler-choice">
+              <option value="Library">Library</option>
+              <option value="__other__">Other (specify)&hellip;</option>
+            </select>
+          </div>
+
+          <div class="mb-3 d-none" id="filler-other-wrap">
+            <div class="mb-2">
+              <label for="filler-other-name" class="form-label fw-semibold small text-secondary">Subject Name</label>
+              <input type="text" class="form-control" id="filler-other-name" placeholder="e.g. Sports, Seminar or Project">
+            </div>
+            <div>
+              <label for="filler-other-teacher" class="form-label fw-semibold small text-secondary">Subject Teacher Name</label>
+              <input type="text" class="form-control" id="filler-other-teacher" placeholder="e.g. Dr. Krish or Dr. Arko">
+            </div>
+          </div>
+
+          <div class="mb-1">
+            <label for="filler-periods" class="form-label fw-semibold small text-secondary">Number of periods</label>
+            <select class="form-select" id="filler-periods">
+              <option value="1">1 period</option>
+              <option value="2">2 periods (consecutive)</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer border-0 p-3 pt-0">
+          <button type="button" class="btn btn-outline-secondary px-4" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary px-4 fw-bold" id="btn-confirm-filler">
+            <i class="bi bi-check-lg me-1"></i> Insert
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Excel Quick Actions Modal (Download Template or Import) -->
+  <div class="modal fade" id="excelActionModal" tabindex="-1" aria-labelledby="excelActionModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow-lg">
+        <div class="modal-header border-0 py-3">
+          <h3 class="modal-title fs-5 fw-bold text-dark d-flex align-items-center gap-2" id="excelActionModalLabel">
+            <i class="bi bi-file-earmark-excel text-success"></i> Excel Bulk Setup
+          </h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4 pt-1">
+          <p class="text-secondary small mb-3">
+            Choose whether you want to download our official 3-sheet starter template or import an existing Excel workbook directly.
+          </p>
+
+          <div id="header-excel-status" class="alert d-none mb-3 small" role="alert"></div>
+
+          <div class="d-grid gap-2 mb-3">
+            <!-- 1: Download Template -->
+            <button type="button" class="btn btn-success py-2.5 px-3 fw-bold d-flex align-items-center justify-content-between text-start" onclick="window.downloadRoutineTemplate()">
+              <span class="d-flex align-items-center gap-2">
+                <i class="bi bi-download fs-5"></i>
+                <span>
+                  <span class="d-block">Download Excel Template</span>
+                  <small class="fw-normal opacity-75" style="font-size: 0.75rem;">Pre-formatted 3-sheet starter workbook (.xlsx)</small>
+                </span>
+              </span>
+              <i class="bi bi-arrow-down-circle"></i>
+            </button>
+
+            <!-- 2: Import from Excel -->
+            <button type="button" class="btn btn-outline-primary py-2.5 px-3 fw-bold d-flex align-items-center justify-content-between text-start" onclick="document.getElementById('header-excel-file').click()">
+              <span class="d-flex align-items-center gap-2">
+                <i class="bi bi-upload fs-5"></i>
+                <span>
+                  <span class="d-block">Import from Excel File</span>
+                  <small class="fw-normal opacity-75" style="font-size: 0.75rem;">Load departments, timings, subjects &amp; faculty</small>
+                </span>
+              </span>
+              <i class="bi bi-file-earmark-plus"></i>
+            </button>
+            <input type="file" id="header-excel-file" accept=".xlsx, .xls" class="d-none">
+          </div>
+
+          <!-- 3: View Guide / Go to Builder Link -->
+          <div class="pt-2 border-top border-light-subtle d-flex justify-content-between align-items-center" id="header-excel-footer">
+            <span class="text-muted small" id="header-excel-footer-text">Need help with columns or rules?</span>
+            <div id="header-excel-footer-action">
+              <a href="help.html#excel" class="btn btn-sm btn-outline-secondary fw-semibold" id="btn-header-excel-guide">
+                <i class="bi bi-book me-1"></i> View Excel Guide
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/app.js?v=2.2"></script>
+  <script src="js/excel-import.js"></script>
+
+  <!-- Progressive Web App Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js')
+          .then(reg => console.log('[PWA] Service Worker registered. Scope:', reg.scope))
+          .catch(err => console.warn('[PWA] Service Worker registration failed:', err));
+      });
+    }
+  </script>
+</body>
+</html>

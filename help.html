@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Guide - Excel & JSON Import | Routine Gen</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <!-- Progressive Web App Metadata & Manifest -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#09090b">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Routine Gen">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+
+  <meta name="description" content="Comprehensive user guide and Excel/JSON documentation for Routine Gen. Download routine templates and learn bulk schedule import step-by-step.">
+  <link rel="canonical" href="https://routinegen.vercel.app/help.html">
+
+  <!-- Open Graph / Facebook / WhatsApp -->
+  <meta property="og:site_name" content="Routine Gen">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://routinegen.vercel.app/help.html">
+  <meta property="og:title" content="User Guide & Excel Template Documentation - Routine Gen">
+  <meta property="og:description" content="Comprehensive user guide and Excel/JSON documentation for Routine Gen. Download routine templates and learn bulk schedule import step-by-step.">
+  <meta property="og:image" content="https://routinegen.vercel.app/icons/icon-512.png">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+  <meta property="og:image:alt" content="Routine Gen User Guide and Documentation">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="User Guide & Excel Template Documentation - Routine Gen">
+  <meta name="twitter:description" content="Comprehensive user guide and Excel/JSON documentation for Routine Gen. Download routine templates and learn bulk schedule import step-by-step.">
+  <meta name="twitter:image" content="https://routinegen.vercel.app/icons/icon-512.png">
+  <meta name="twitter:image:alt" content="Routine Gen User Guide and Documentation">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Main Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- SheetJS for Live Client-Side Template Download -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <style>
+    .guide-hero {
+      background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0) 70%);
+    }
+    .guide-screenshot-frame {
+      border: 1px solid #27272a;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+      background-color: #09090b;
+    }
+    .guide-screenshot-frame img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.25s ease;
+    }
+    .guide-step-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #ffffff;
+      color: #09090b;
+      font-weight: 700;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .sheet-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #14532d;
+      color: #bbf7d0;
+      border: 1px solid #22c55e;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 3px 10px;
+    }
+    .code-box {
+      background: #09090b;
+      border: 1px solid #27272a;
+      border-radius: 8px;
+      padding: 14px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.8rem;
+      color: #e4e4e7;
+      max-height: 340px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* Mobile Phone Optimizations */
+    @media (max-width: 576px) {
+      .guide-hero {
+        padding-top: 1rem !important;
+        padding-bottom: 1.5rem !important;
+        margin-bottom: 2rem !important;
+      }
+      .guide-hero h2 {
+        font-size: 1.45rem !important;
+        line-height: 1.25 !important;
+      }
+      .guide-hero p {
+        font-size: 0.875rem !important;
+        line-height: 1.45 !important;
+      }
+
+      .table-responsive {
+        border-radius: 6px;
+        -webkit-overflow-scrolling: touch;
+        margin-bottom: 0.5rem;
+      }
+      .guide-table {
+        min-width: 500px;
+      }
+      .guide-table th,
+      .guide-table td {
+        font-size: 0.78rem !important;
+        padding: 6px 8px !important;
+      }
+      .guide-step-num {
+        width: 28px;
+        height: 28px;
+        font-size: 0.8rem;
+      }
+      .code-box {
+        font-size: 0.72rem;
+        padding: 10px;
+        max-height: 260px;
+      }
+      .card-header-mobile {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 0.35rem !important;
+      }
+      .swipe-hint {
+        display: block !important;
+      }
+      body {
+        padding-bottom: 75px !important;
+      }
+      .floating-builder-btn {
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.15) !important;
+      }
+    }
+    .swipe-hint {
+      display: none;
+      font-size: 0.7rem;
+      color: #a1a1aa;
+    }
+  </style>
+</head>
+<body class="bg-light-subtle min-vh-100 py-3 py-md-5">
+  <div class="app-container" style="max-width: 1440px;">
+    <!-- Top Header -->
+    <header class="d-flex flex-row align-items-center justify-content-between pb-3 mb-4 pb-md-4 border-bottom gap-2">
+      <div class="d-flex align-items-center gap-2 gap-sm-3">
+        <a href="index.html" class="text-decoration-none">
+          <h1 class="h4 mb-0 fw-bold text-dark tracking-tight d-flex align-items-center gap-2">
+            <i class="bi bi-calendar3-range text-primary"></i> Routine Gen <span class="badge bg-secondary text-secondary-emphasis border border-secondary-subtle small fw-normal ms-1">Guide</span>
+          </h1>
+        </a>
+      </div>
+    </header>
+
+    <!-- Welcome & Startup Preference Banner -->
+    <div class="card border-primary border-opacity-25 bg-primary bg-opacity-10 p-3 mb-4 rounded-3 d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between gap-2.5 shadow-sm">
+      <div class="d-flex align-items-start gap-2.5">
+        <i class="bi bi-info-circle-fill text-primary fs-5 flex-shrink-0 mt-0.5"></i>
+        <div>
+          <span class="fw-semibold text-dark d-block">Welcome to the Routine Gen Guide!</span>
+          <span class="text-secondary small">Read this quick walkthrough of our Excel &amp; JSON bulk import features.</span>
+        </div>
+      </div>
+      <div class="form-check mb-0 flex-shrink-0 align-self-start align-self-sm-center">
+        <input class="form-check-input" type="checkbox" id="dont-show-again-top" onchange="syncDontShowPreference(this.checked)">
+        <label class="form-check-label text-secondary small user-select-none" for="dont-show-again-top">
+          Don't show again
+        </label>
+      </div>
+    </div>
+
+    <!-- Hero Banner -->
+    <section class="guide-hero text-center py-3 py-sm-4 mb-4 mb-sm-5 border-bottom border-light-subtle">
+      <h2 class="display-6 fw-bold text-dark mb-2">How Excel &amp; JSON Bulk Imports Work</h2>
+      <p class="text-secondary mx-auto mb-3 mb-sm-4" style="max-width: 700px; font-size: 1rem;">
+        Skip tedious manual clicks! Learn how to bulk-load your entire university or college schedule with our automated <strong>Excel Multi-Sheet System</strong> or compile conflict-free schedules live with <strong>JSON Routine Import</strong>.
+      </p>
+
+      <!-- Hero Visual Preview Screenshot -->
+      <div class="guide-screenshot-frame mx-auto mt-2 mt-sm-3" style="max-width: 960px;">
+        <div class="px-2.5 px-sm-3 py-2 bg-body border-bottom border-light-subtle d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between gap-1">
+          <span class="small text-secondary fw-semibold"><i class="bi bi-display me-1.5"></i> Academic Routine Architecture Preview</span>
+          <span class="badge bg-success bg-opacity-10 text-success border border-success-subtle small">Excel + Live JSON Engine</span>
+        </div>
+        <img src="assets/images/routine_excel_json_preview.jpg" alt="Routine Gen timetable generator interface showing live schedule grid with teacher conflict resolution" class="img-fluid" loading="lazy">
+      </div>
+    </section>
+
+    <!-- SECTION 1: EXCEL BULK SETUP -->
+    <section id="excel" class="mb-4 mb-sm-5 pb-3 pb-sm-4 border-bottom border-light-subtle">
+      <div class="mb-3">
+        <h3 class="h4 mb-1 fw-bold text-dark">Excel Bulk Setup</h3>
+        <div class="text-muted small">All-in-One 3-Sheet Workbook System</div>
+      </div>
+      <p class="text-secondary mb-4 small fs-6-sm">
+        Instead of typing every department, semester, subject, and teacher by hand, you can organize your data in a single Excel file (<code>.xlsx</code> or <code>.xls</code>). Routine Gen automatically reads all 3 sheets simultaneously.
+      </p>
+
+      <!-- Sheet 1 Details -->
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-header bg-white border-0 pt-3 pb-2 d-flex card-header-mobile justify-content-between align-items-start align-items-sm-center gap-1.5 gap-sm-2">
+          <div class="d-flex align-items-center gap-2">
+            <span class="sheet-pill"><i class="bi bi-table"></i> Sheet 1</span>
+            <h4 class="mb-0 fw-bold text-dark fs-6 fs-sm-5">Departments &amp; Timing</h4>
+          </div>
+          <span class="text-muted small">Defines departments, semesters, and bell timings</span>
+        </div>
+        <div class="card-body">
+          <p class="text-secondary small mb-3">
+            In this sheet, each row represents one semester. You can give different semesters completely independent start times, periods per day, and tiffin breaks!
+          </p>
+
+          <!-- Screenshot 1 -->
+          <div class="guide-screenshot-frame mb-3">
+            <div class="px-2.5 px-sm-3 py-1.5 bg-body border-bottom border-light-subtle text-muted small" style="font-size: 0.78rem;">
+              <i class="bi bi-file-earmark-spreadsheet me-1 text-success"></i> Sheet 1 in Microsoft Excel (Departments, Semesters, Durations &amp; Tiffin)
+            </div>
+            <img src="assets/images/excel_sheets_tutorial_screenshot.jpg" alt="Excel Sheet 1 template tutorial showing Department name, working days, and period timing configuration" class="img-fluid" loading="lazy">
+          </div>
+
+          <!-- Column Table Reference -->
+          <div class="swipe-hint text-end mb-1.5"><i class="bi bi-arrow-left-right me-1"></i>Swipe table sideways to view columns</div>
+          <div class="table-responsive">
+            <table class="table table-bordered table-sm mb-0 guide-table">
+              <thead class="table-light">
+                <tr>
+                  <th style="width: 25%; min-width: 120px;">Column Name</th>
+                  <th style="width: 25%; min-width: 110px;">Example</th>
+                  <th style="min-width: 220px;">How Routine Gen Uses It</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="fw-semibold text-primary">Department</td>
+                  <td><code>BCA</code>, <code>BBA</code>, <code>B.Tech</code></td>
+                  <td class="text-secondary small">Automatically creates the department if it doesn't already exist.</td>
+                </tr>
+                <tr>
+                  <td class="fw-semibold text-primary">Semester</td>
+                  <td><code>Semester 1</code>, <code>Sem 2</code>, <code>3</code></td>
+                  <td class="text-secondary small">Creates the semester for that department (e.g. "Semester 1").</td>
+                </tr>
+                <tr>
+                  <td class="fw-semibold text-primary">Periods/Day</td>
+                  <td><code>8</code>, <code>6</code></td>
+                  <td class="text-secondary small">Number of class periods scheduled per day for this semester.</td>
+                </tr>
+                <tr>
+                  <td class="fw-semibold text-primary">Period Duration (mins)</td>
+                  <td><code>45</code>, <code>50</code></td>
+                  <td class="text-secondary small">Length of each normal teaching lecture in minutes.</td>
+                </tr>
+                <tr>
+                  <td class="fw-semibold text-primary">Start Time</td>
+                  <td><code>09:00</code>, <code>10:00 AM</code></td>
+                  <td class="text-secondary small">College start time for this semester. Independent per semester!</td>
+                </tr>
+                <tr>
+                  <td class="fw-semibold text-primary">Tiffin After Period #</td>
+                  <td><code>4</code></td>
+                  <td class="text-secondary small">Slot after which the lunch/tiffin break takes place.</td>
+                </tr>
+                <tr>
+                  <td class="fw-semibold text-primary">Tiffin Duration (mins)</td>
+                  <td><code>30</code></td>
+                  <td class="text-secondary small">Duration of the lunch/tiffin break in minutes.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sheet 2 Details -->
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-header bg-white border-0 pt-3 pb-2 d-flex card-header-mobile justify-content-between align-items-start align-items-sm-center gap-1.5 gap-sm-2">
+          <div class="d-flex align-items-center gap-2">
+            <span class="sheet-pill"><i class="bi bi-table"></i> Sheet 2</span>
+            <h4 class="mb-0 fw-bold text-dark fs-6 fs-sm-5">Subjects &amp; Labs</h4>
+          </div>
+          <span class="text-muted small">Defines courses and marks practical lab subjects</span>
+        </div>
+        <div class="card-body">
+          <div class="alert alert-info border-info-subtle py-2 px-3 small mb-3">
+            <i class="bi bi-info-circle-fill me-1.5 text-info"></i>
+            <strong>Special Smart Rule:</strong> Subjects listed under <code>Labs</code> will automatically get <strong>Lab (1 period)</strong> and <strong>Lab Extended (2 periods)</strong> variants in Routine Gen! Subjects that only appear in <code>Subjects</code> will remain pure theory automatically without you having to re-type anything.
+          </div>
+
+          <!-- Screenshot 2 -->
+          <div class="guide-screenshot-frame mb-3">
+            <div class="px-2.5 px-sm-3 py-1.5 bg-body border-bottom border-light-subtle text-muted small" style="font-size: 0.78rem;">
+              <i class="bi bi-file-earmark-spreadsheet me-1 text-success"></i> Sheet 2 in Microsoft Excel (Subjects and Lab Variants)
+            </div>
+            <img src="assets/images/excel_sheet2_subjects_labs_screenshot.jpg" alt="Excel Sheet 2 template tutorial showing Subject codes, lab durations, and assigned faculty names" class="img-fluid" loading="lazy">
+          </div>
+
+          <div class="swipe-hint text-end mb-1.5"><i class="bi bi-arrow-left-right me-1"></i>Swipe table sideways to view columns</div>
+          <div class="table-responsive">
+            <table class="table table-bordered table-sm mb-0 guide-table">
+              <thead class="table-light">
+                <tr>
+                  <th style="width: 22%; min-width: 120px;">Column Name</th>
+                  <th style="width: 28%; min-width: 130px;">Example</th>
+                  <th style="min-width: 220px;">Behavior &amp; Rules</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="fw-semibold text-primary">Department</td>
+                  <td><code>BCA</code>, <code>BBA</code></td>
+                  <td class="text-secondary small">Matches the department from Sheet 1.</td>
+                </tr>
+                <tr>
+                  <td class="fw-semibold text-primary">Semester</td>
+                  <td><code>Semester 1</code>, <code>Semester 2</code></td>
+                  <td class="text-secondary small">Matches the semester from Sheet 1.</td>
+                </tr>
+                <tr>
+                  <td class="fw-semibold text-primary">Subjects</td>
+                  <td><code>OS, DSA, Disaster Management</code></td>
+                  <td class="text-secondary small">Comma-separated list of all subjects taught in this semester.</td>
+                </tr>
+                <tr>
+                  <td class="fw-semibold text-primary">Labs</td>
+                  <td><code>OS, DSA</code> (leave blank for pure theory)</td>
+                  <td class="text-secondary small">Any subject listed here automatically gets Theory, Lab (1 period), and Lab Extended (2 periods) options in the routine builder.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sheet 3 Details -->
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-header bg-white border-0 pt-3 pb-2 d-flex card-header-mobile justify-content-between align-items-start align-items-sm-center gap-1.5 gap-sm-2">
+          <div class="d-flex align-items-center gap-2">
+            <span class="sheet-pill"><i class="bi bi-table"></i> Sheet 3</span>
+            <h4 class="mb-0 fw-bold text-dark fs-6 fs-sm-5">Teachers (Faculty)</h4>
+          </div>
+          <span class="text-muted small">Registers all teachers, working days, and available hours</span>
+        </div>
+        <div class="card-body">
+          <p class="text-secondary small mb-3">
+            Register all teachers in one place. You can specify which days they teach (e.g. Mon, Tue, Wed) and their shift hours.
+          </p>
+
+          <!-- Screenshot 3 -->
+          <div class="guide-screenshot-frame mb-3">
+            <div class="px-2.5 px-sm-3 py-1.5 bg-body border-bottom border-light-subtle text-muted small" style="font-size: 0.78rem;">
+              <i class="bi bi-file-earmark-spreadsheet me-1 text-success"></i> Sheet 3 in Microsoft Excel (Teacher Names, Working Days &amp; Shift Times)
+            </div>
+            <img src="assets/images/excel_sheet3_teachers_screenshot.jpg" alt="Excel Sheet 3 template tutorial showing Teacher names, working days, and available time windows" class="img-fluid" loading="lazy">
+          </div>
+
+          <div class="swipe-hint text-end mb-1.5"><i class="bi bi-arrow-left-right me-1"></i>Swipe table sideways to view columns</div>
+          <div class="table-responsive">
+            <table class="table table-bordered table-sm mb-0 guide-table">
+              <thead class="table-light">
+                <tr>
+                  <th style="width: 25%; min-width: 120px;">Column Name</th>
+                  <th style="width: 30%; min-width: 130px;">Example</th>
+                  <th style="min-width: 220px;">Behavior &amp; Rules</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="fw-semibold text-primary">Teacher Name</td>
+                  <td><code>Dr. Krish</code>, <code>Dr. Arko</code></td>
+                  <td class="text-secondary small">Full name or title of the faculty member.</td>
+                </tr>
+                <tr>
+                  <td class="fw-semibold text-primary">Working Days</td>
+                  <td><code>Mon, Tue, Wed, Thu, Fri</code></td>
+                  <td class="text-secondary small">Comma-separated days when this teacher is on campus. Short or full day names work!</td>
+                </tr>
+                <tr>
+                  <td class="fw-semibold text-primary">Available From</td>
+                  <td><code>09:00</code> (leave blank for all day)</td>
+                  <td class="text-secondary small">Optional start time of their shift (e.g. 9:00 AM).</td>
+                </tr>
+                <tr>
+                  <td class="fw-semibold text-primary">Available To</td>
+                  <td><code>17:00</code> (leave blank for all day)</td>
+                  <td class="text-secondary small">Optional end time of their shift (e.g. 5:00 PM).</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- How to import in the app -->
+      <div class="p-3 bg-light rounded-3 border border-light-subtle mb-4">
+        <h4 class="h6 fw-bold text-dark d-flex align-items-center gap-2 mb-2">
+          <i class="bi bi-check2-circle text-success"></i> Where to Upload in the Routine Gen App
+        </h4>
+        <div class="row g-3 small text-secondary">
+          <div class="col-md-6">
+            <strong class="text-dark d-block mb-1">In Step 2 (Departments &amp; Semesters):</strong>
+            Click <span class="badge bg-secondary text-light">Import from Excel</span> at the top-right of the card. Routine Gen will read Sheet 1 (Departments &amp; Timing) and Sheet 2 (Subjects &amp; Labs) instantly!
+          </div>
+          <div class="col-md-6">
+            <strong class="text-dark d-block mb-1">In Step 3 (Teachers &amp; Assignments):</strong>
+            Click <span class="badge bg-secondary text-light">Import from Excel</span> at the top-right of the card. Routine Gen will read Sheet 3 (Teachers) and load your faculty directory!
+          </div>
+        </div>
+        <div class="mt-3 pt-3 border-top border-light-subtle">
+          <div class="d-grid d-sm-flex gap-2.5">
+            <button onclick="downloadOfficialTemplate()" class="btn btn-success fw-semibold shadow-sm py-2 px-3 d-flex align-items-center justify-content-center gap-1.5 flex-fill">
+              <i class="bi bi-download"></i> Download Template
+            </button>
+            <button onclick="goToAppWithExcel()" class="btn btn-outline-primary fw-semibold shadow-sm py-2 px-3 d-flex align-items-center justify-content-center gap-1.5 flex-fill">
+              <i class="bi bi-file-earmark-plus"></i> Add Your Excel File
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: JSON IMPORT & LIVE CONFLICT RESOLVER -->
+    <section id="json" class="mb-4 mb-sm-5 pb-3 pb-sm-4 border-bottom border-light-subtle">
+      <div class="mb-3">
+        <h3 class="h4 mb-1 fw-bold text-dark">JSON Routine Import</h3>
+        <div class="text-muted small">Live Schedule Conflict Resolver &amp; Timing Engine</div>
+      </div>
+      <p class="text-secondary mb-4 small fs-6-sm">
+        The JSON Import tool is designed for institutions, developers, or administrators who have structured timetable records. As classes are added, our engine detects <strong>teacher overlaps across any department or semester in real-time</strong> and lets you resolve them on the fly.
+      </p>
+
+      <div class="row g-4 mb-4">
+        <div class="col-lg-6">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white border-0 pt-3 pb-2">
+              <h4 class="h5 fw-bold text-dark d-flex align-items-center gap-2 mb-0">
+                <i class="bi bi-code-slash text-primary"></i> JSON Schema Anatomy
+              </h4>
+            </div>
+            <div class="card-body small text-secondary">
+              <p>Your JSON object contains 3 main sections:</p>
+              <ul class="ps-3 mb-3">
+                <li><code>settings</code>: Global default periods, duration, start time, tiffin break, and working days.</li>
+                <li><code>teachers</code> (optional): Restrict teachers to specific working hours (e.g. <code>availableFrom: "11:00"</code>).</li>
+                <li><code>entries</code>: Array of class slots with <code>department</code>, <code>semester</code>, <code>day</code>, <code>period</code>, <code>subject</code>, <code>teacher</code>, and <code>type</code>.</li>
+              </ul>
+              <h5 class="h6 fw-bold text-dark mb-2">Supported Class Types:</h5>
+              <div class="d-flex flex-wrap gap-1.5 mb-2">
+                <span class="badge bg-secondary">theory (1 period)</span>
+                <span class="badge bg-secondary">theory_extended (2 periods)</span>
+                <span class="badge bg-secondary">lab_mini (1 period)</span>
+                <span class="badge bg-secondary">lab_extended (2 periods)</span>
+                <span class="badge bg-secondary">theory_lab (2 periods)</span>
+                <span class="badge bg-warning bg-opacity-10 text-warning border border-warning-subtle">filler (Library/Sports)</span>
+              </div>
+              <p class="text-muted small mb-0">
+                <code>filler</code> classes (like Library or Sports Period) don't tie down any teacher, completely bypassing clashes.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white border-0 pt-3 pb-2">
+              <h4 class="h5 fw-bold text-dark d-flex align-items-center gap-2 mb-0">
+                <i class="bi bi-magic text-danger"></i> Live Conflict Resolution
+              </h4>
+            </div>
+            <div class="card-body small text-secondary">
+              <p>
+                When a teacher is already booked in Department A, and a second class tries to schedule them in Department B during an overlapping clock time, Routine Gen flags a <strong>Conflict</strong> in the Live Build Status!
+              </p>
+              <div class="p-3 bg-body rounded-3 border border-danger-subtle mb-3">
+                <strong class="text-danger d-block mb-1"><i class="bi bi-exclamation-octagon-fill me-1"></i> Two Quick One-Click Fixes:</strong>
+                <ol class="ps-3 mb-0">
+                  <li class="mb-1"><strong>Auto-Place:</strong> Automatically scans the entire week to find the earliest free, non-clashing slot for this section and moves the class there.</li>
+                  <li><strong>Add Library / Other Class:</strong> Fills that exact slot with a placeholder (Library, Sports, Seminar) for 1 or 2 periods so students don't have an empty gap.</li>
+                </ol>
+              </div>
+              <div class="d-flex gap-2 mt-auto pt-1">
+                <a href="json-import.html" class="btn btn-primary btn-sm px-3 fw-semibold w-100 w-sm-auto justify-content-center d-flex align-items-center gap-1.5">
+                  <i class="bi bi-play-fill"></i> Open JSON Import Tool
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sample JSON snippet with copy button -->
+      <div class="card border-0 shadow-sm">
+        <div class="card-header bg-white border-0 pt-3 pb-2 d-flex justify-content-between align-items-center gap-2">
+          <h4 class="h6 fw-bold text-dark mb-0 text-truncate"><i class="bi bi-filetype-json text-primary me-1.5"></i> Ready-to-Copy JSON Template</h4>
+          <button class="btn btn-sm btn-outline-secondary py-1 px-2.5 fw-semibold flex-shrink-0" id="btn-copy-json" onclick="copySampleJson()">
+            <i class="bi bi-copy me-1"></i> <span id="copy-btn-text">Copy JSON</span>
+          </button>
+        </div>
+        <div class="card-body p-0">
+          <pre class="code-box mb-0" id="sample-json-code">{
+  "settings": {
+    "periods": 5,
+    "periodDuration": 45,
+    "startTime": "12:00",
+    "tiffinPeriod": 3,
+    "tiffinDuration": 45,
+    "workingDays": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+  },
+  "teachers": [
+    { "name": "Dr. Krish", "availableFrom": "11:00", "availableTo": "18:00" },
+    { "name": "Dr. Arko", "availableFrom": "12:00", "availableTo": "17:00" }
+  ],
+  "entries": [
+    { "department": "BCA", "semester": "Semester 1", "day": "Monday", "period": 1, "subject": "C Programming", "teacher": "Dr. Krish", "type": "theory", "timing": { "startTime": "12:00" } },
+    { "department": "BCA", "semester": "Semester 1", "day": "Monday", "period": 2, "subject": "Digital Logic", "teacher": "Dr. Arko", "type": "theory", "timing": { "startTime": "12:00" } },
+    { "department": "BCA", "semester": "Semester 1", "day": "Monday", "period": 4, "subject": "Programming Lab", "teacher": "Dr. Krish", "type": "lab_extended", "timing": { "startTime": "12:00" } },
+    { "department": "BCA", "semester": "Semester 2", "day": "Monday", "period": 1, "subject": "Data Structures", "teacher": "Dr. Krish", "type": "theory", "timing": { "startTime": "13:00" } }
+  ]
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: FAQ & TIPS -->
+    <section id="faq" class="mb-4 mb-sm-5">
+      <div class="mb-3">
+        <h3 class="h4 mb-1 fw-bold text-dark">Frequently Asked Questions</h3>
+        <div class="text-muted small">Timings, teacher hours, mobile usage &amp; PDF exports</div>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-md-6">
+          <div class="p-3 bg-light rounded-3 border border-light-subtle h-100">
+            <h4 class="h6 fw-bold text-dark mb-2"><i class="bi bi-clock-history text-primary me-1.5"></i> Can different semesters have different timings?</h4>
+            <p class="text-secondary small mb-0">
+              Yes! Each semester can have its own start time (e.g. BCA Sem 1 starts at 9:00 AM, but BCA Sem 2 starts at 10:00 AM). Routine Gen checks teacher conflicts based on <strong>actual clock minutes</strong>, not arbitrary period numbers.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="p-3 bg-light rounded-3 border border-light-subtle h-100">
+            <h4 class="h6 fw-bold text-dark mb-2"><i class="bi bi-person-check text-primary me-1.5"></i> What if a teacher is available all day?</h4>
+            <p class="text-secondary small mb-0">
+              Simply leave the "Available From" and "Available To" fields blank in the Excel sheet or web form. The teacher will be available for any period during their working days.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="p-3 bg-light rounded-3 border border-light-subtle h-100">
+            <h4 class="h6 fw-bold text-dark mb-2"><i class="bi bi-file-earmark-pdf text-primary me-1.5"></i> How do I export or print the routines?</h4>
+            <p class="text-secondary small mb-0">
+              In Step 4, click <strong>"Save PDF"</strong> on any individual semester table to download a crisp, printer-ready PDF, or click <strong>"Export All PDFs"</strong> at the top to download every semester routine in a single batch.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="p-3 bg-light rounded-3 border border-light-subtle h-100">
+            <h4 class="h6 fw-bold text-dark mb-2"><i class="bi bi-phone text-primary me-1.5"></i> Does this work smoothly on mobile?</h4>
+            <p class="text-secondary small mb-0">
+              Yes! Routine Gen has a responsive 4-step progress tracker, touch-sized teacher day toggles, and sticky Day and Teacher columns so you can pan across timetable schedules on your smartphone without losing your place.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Action -->
+    <footer class="text-center pt-4 pb-4 border-top border-light-subtle">
+      <h2 class="h5 fw-bold text-dark mb-2">Ready to create your schedule?</h2>
+      <p class="text-muted small mb-3">Download the Excel template or jump straight into the builder.</p>
+      <div class="d-grid gap-2.5 col-11 col-sm-8 col-md-6 mx-auto mb-3" style="max-width: 440px;">
+        <button onclick="downloadOfficialTemplate()" class="btn btn-success py-2.5 fw-semibold shadow-sm w-100 d-flex align-items-center justify-content-center gap-2">
+          <i class="bi bi-download"></i> Download Excel Template
+        </button>
+        <button onclick="goToApp()" class="btn btn-primary py-2.5 fw-semibold shadow-sm w-100 d-flex align-items-center justify-content-center gap-2">
+          <i class="bi bi-arrow-right-circle"></i> Launch Routine Builder
+        </button>
+      </div>
+      <div class="d-flex justify-content-center mt-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="dont-show-again-bottom" onchange="syncDontShowPreference(this.checked)">
+          <label class="form-check-label text-muted small user-select-none" for="dont-show-again-bottom">
+            Don't show again
+          </label>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Floating Mobile Quick Action Pill -->
+  <div class="d-sm-none position-fixed bottom-0 start-0 end-0 p-3 z-3" style="background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 60%, rgba(0, 0, 0, 0)); pointer-events: none;">
+    <div style="pointer-events: auto;">
+      <button onclick="goToApp()" class="btn btn-primary w-100 py-2.5 fw-bold shadow-lg floating-builder-btn d-flex align-items-center justify-content-center gap-2">
+        <span>Go to Routine Builder</span>
+        <i class="bi bi-arrow-right"></i>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    function syncDontShowPreference(checked) {
+      if (checked) {
+        localStorage.setItem('routine_help_dont_show', 'true');
+      } else {
+        localStorage.removeItem('routine_help_dont_show');
+      }
+      const chkTop = document.getElementById('dont-show-again-top');
+      const chkBottom = document.getElementById('dont-show-again-bottom');
+      if (chkTop) chkTop.checked = checked;
+      if (chkBottom) chkBottom.checked = checked;
+    }
+
+    function goToApp() {
+      sessionStorage.setItem('routine_help_seen_session', 'true');
+      window.location.href = 'index.html?from=help';
+    }
+
+    function goToAppWithExcel() {
+      sessionStorage.setItem('routine_help_seen_session', 'true');
+      window.location.href = 'index.html?openExcel=true';
+    }
+
+    // Initialize checkboxes on page load based on current localStorage setting
+    document.addEventListener('DOMContentLoaded', () => {
+      const isDontShow = localStorage.getItem('routine_help_dont_show') === 'true';
+      const chkTop = document.getElementById('dont-show-again-top');
+      const chkBottom = document.getElementById('dont-show-again-bottom');
+      if (chkTop) chkTop.checked = isDontShow;
+      if (chkBottom) chkBottom.checked = isDontShow;
+    });
+
+    function downloadOfficialTemplate() {
+      if (typeof XLSX === 'undefined') {
+        alert('SheetJS is loading. Please check your internet connection and try again.');
+        return;
+      }
+
+      const wb = XLSX.utils.book_new();
+
+      // Sheet 1: Departments & Timing
+      const timingData = [
+        ['Department', 'Semester', 'Periods/Day', 'Period Duration (mins)', 'Start Time', 'Tiffin After Period #', 'Tiffin Duration (mins)'],
+        ['BCA', 'Semester 1', 8, 45, '09:00', 4, 30],
+        ['BCA', 'Semester 2', 8, 45, '10:00', 4, 30],
+        ['BBA', 'Semester 1', 6, 50, '09:30', 3, 30],
+        ['BBA', 'Semester 2', 6, 50, '09:30', 3, 30]
+      ];
+      const wsTiming = XLSX.utils.aoa_to_sheet(timingData);
+      wsTiming['!cols'] = [
+        { wch: 16 }, { wch: 16 }, { wch: 14 }, { wch: 24 }, { wch: 14 }, { wch: 24 }, { wch: 24 }
+      ];
+      XLSX.utils.book_append_sheet(wb, wsTiming, 'Departments & Timing');
+
+      // Sheet 2: Subjects & Labs
+      const quickSubData = [
+        ['Department', 'Semester', 'Subjects', 'Labs'],
+        ['BCA', 'Semester 1', 'OS, DSA, Disaster Management', 'OS, DSA'],
+        ['BCA', 'Semester 2', 'DBMS, Computer Networks, Software Engineering', 'DBMS, Computer Networks'],
+        ['BBA', 'Semester 1', 'Principles of Management, Business Economics, Financial Accounting', ''],
+        ['BBA', 'Semester 2', 'Marketing Management, Human Resource Management, Business Law', '']
+      ];
+      const wsQuickSub = XLSX.utils.aoa_to_sheet(quickSubData);
+      wsQuickSub['!cols'] = [
+        { wch: 16 }, { wch: 16 }, { wch: 54 }, { wch: 36 }
+      ];
+      XLSX.utils.book_append_sheet(wb, wsQuickSub, 'Subjects & Labs');
+
+      // Sheet 3: Teachers Directory
+      const teachersData = [
+        ['Teacher Name', 'Working Days', 'Available From', 'Available To'],
+        ['Dr. Krish', 'Mon,Tue,Wed,Thu,Fri', '09:00', '17:00'],
+        ['Dr. Arko', 'Monday, Tuesday, Thursday', '12:00', '15:00']
+      ];
+      const wsTeachers = XLSX.utils.aoa_to_sheet(teachersData);
+      wsTeachers['!cols'] = [
+        { wch: 24 }, { wch: 34 }, { wch: 18 }, { wch: 18 }
+      ];
+      XLSX.utils.book_append_sheet(wb, wsTeachers, 'Teachers');
+
+      XLSX.writeFile(wb, 'routine_template.xlsx');
+    }
+
+    function copySampleJson() {
+      const code = document.getElementById('sample-json-code').textContent;
+      navigator.clipboard.writeText(code).then(() => {
+        const btnText = document.getElementById('copy-btn-text');
+        btnText.textContent = 'Copied!';
+        setTimeout(() => { btnText.textContent = 'Copy JSON'; }, 2000);
+      });
+    }
+  </script>
+
+  <!-- Progressive Web App Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js')
+          .then(reg => console.log('[PWA] Service Worker registered. Scope:', reg.scope))
+          .catch(err => console.warn('[PWA] Service Worker registration failed:', err));
+      });
+    }
+  </script>
+</body>
+</html>
+

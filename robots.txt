@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://routinegen.vercel.app/sitemap.xml
+
