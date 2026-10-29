@@ -55,10 +55,10 @@
       ]
     },
     {
-      "name": "User Guide",
-      "short_name": "Help",
-      "description": "Open user documentation and Excel tutorials",
-      "url": "/help.html",
+      "name": "Routine Wizard",
+      "short_name": "Wizard",
+      "description": "Launch the step-by-step timetable generator",
+      "url": "/wizard.html",
       "icons": [
         {
           "src": "icons/icon-192.png",

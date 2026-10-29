@@ -14,8 +14,8 @@ Routine Gen simplifies academic schedule planning for universities, colleges, de
 - **Printer-Ready PDF Export**: Generates high-resolution vector PDF schedules individually or in bulk via jsPDF.
 
 ## Core Tools & Pages
-- [Main Routine Generator](https://routinegen.vercel.app/): Interactive 4-step wizard to configure bell settings, departments, semesters, teachers, and generate routines.
-- [User Guide & Excel Documentation](https://routinegen.vercel.app/help.html): Comprehensive tutorial, Excel template download, JSON anatomy, and FAQs.
+- [Routine Gen Landing Page](https://routinegen.vercel.app/): Product overview, feature tour, interactive Excel & JSON previews, and FAQs.
+- [Main Routine Generator](https://routinegen.vercel.app/wizard.html): Interactive 4-step wizard to configure bell settings, departments, semesters, teachers, and generate routines.
 - [JSON Routine Importer](https://routinegen.vercel.app/json-import.html): Dedicated JSON routine validator, live conflict resolver, and busy teacher grid.
 - [Full LLM Context & Schemas](https://routinegen.vercel.app/llms-full.txt): Complete technical specification, column rules, JSON schema, and algorithm details.
 

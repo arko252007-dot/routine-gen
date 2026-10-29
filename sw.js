@@ -5,15 +5,15 @@
  * Excel import/export (SheetJS), and PDF timetable rendering (jsPDF).
  */
 
-const CACHE_NAME = 'routinegen-cache-v6';
+const CACHE_NAME = 'routinegen-cache-v8';
 
 // All critical core pages, assets, and external CDN dependencies
 const PRECACHE_ASSETS = [
   // Core Routes
   '/',
   '/index.html',
+  '/wizard.html',
   '/json-import.html',
-  '/help.html',
   '/manifest.json',
   '/robots.txt',
   '/sitemap.xml',
@@ -23,11 +23,13 @@ const PRECACHE_ASSETS = [
   // Local Stylesheets
   '/css/styles.css',
   '/css/json-import.css',
+  '/css/hero.css',
 
   // Local Application Scripts
   '/js/app.js',
   '/js/excel-import.js',
   '/js/json-import.js',
+  '/js/hero.js',
 
   // Local Icons & Graphics
   '/favicon.svg',
@@ -35,6 +37,16 @@ const PRECACHE_ASSETS = [
   '/icons/icon-192.png',
   '/icons/icon-512.png',
   '/icons/icon-512-maskable.png',
+
+  // Showcase & Preview Images
+  '/demo-pics/manual-wizard-settings.png',
+  '/demo-pics/manual-wizard-departments.png',
+  '/demo-pics/manual-wizard-faculty.png',
+  '/demo-pics/manual-wizard-routines.png',
+  '/demo-pics/excel-sheet1-departments.jpg',
+  '/demo-pics/excel-sheet2-subjects.jpg',
+  '/demo-pics/excel-sheet3-teachers.jpg',
+  '/demo-pics/json-import-mode.png',
 
   // External CDN Dependencies (Precached for 100% Offline Excel & PDF Operations)
   'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css',

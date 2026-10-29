@@ -630,7 +630,7 @@
     const footerAction = document.getElementById('header-excel-footer-action');
     if (footerAction) {
       footerAction.innerHTML = `
-        <a href="help.html#excel" class="btn btn-sm btn-outline-secondary fw-semibold" id="btn-header-excel-guide">
+        <a href="index.html#modes" class="btn btn-sm btn-outline-secondary fw-semibold" id="btn-header-excel-guide">
           <i class="bi bi-book me-1"></i> View Excel Guide
         </a>
       `;
@@ -712,7 +712,7 @@
         resetHeaderModalFooter();
       });
 
-      // Auto-open modal if requested via URL param (e.g. from help.html)
+      // Auto-open modal if requested via URL param (e.g. from index.html)
       try {
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.get('openExcel') === 'true' && typeof bootstrap !== 'undefined' && bootstrap.Modal) {

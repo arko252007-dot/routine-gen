@@ -3,38 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Routine Gen - Smart Academic Routine Generator</title>
+  <title>Routine Gen - Conflict-Free College Routine &amp; Timetable Generator</title>
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-
+  <link rel="canonical" href="https://routinegen.vercel.app/">
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#09090b">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Routine Gen">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
+  
+  <meta name="description" content="Routine Gen is a free, 100% client-side college routine generator and timetable builder. Eliminate teacher clashes with exact clock-minute scheduling and instant Excel/PDF export.">
+  <meta name="theme-color" content="#000000">
+  <meta name="google-site-verification" content="nARPq0-BdEiWT4SyoWrPRlOJbcvaBtam5SRCvgxjO2M">
 
-  <meta name="description" content="Generate conflict-free college routines and timetables client-side with smart slot assignment, teacher availability checks, and Excel or PDF exports.">
-  <link rel="canonical" href="https://routinegen.vercel.app/">
-
-  <!-- Open Graph / Facebook / WhatsApp -->
+  <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
   <meta property="og:site_name" content="Routine Gen">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://routinegen.vercel.app/">
-  <meta property="og:title" content="Routine Gen - Smart Academic Routine Generator">
-  <meta property="og:description" content="Generate conflict-free college routines and timetables client-side with smart slot assignment, teacher availability checks, and Excel or PDF exports.">
+  <meta property="og:title" content="Routine Gen - Conflict-Free College Routine &amp; Timetable Generator">
+  <meta property="og:description" content="Free, 100% client-side college routine generator and timetable builder. Eliminate teacher clashes with exact clock-minute scheduling and instant Excel/PDF export.">
   <meta property="og:image" content="https://routinegen.vercel.app/icons/icon-512.png">
   <meta property="og:image:width" content="512">
   <meta property="og:image:height" content="512">
-  <meta property="og:image:alt" content="Routine Gen - Smart Academic Routine Generator">
+  <meta property="og:image:alt" content="Routine Gen - Conflict-Free College Routine &amp; Timetable Generator">
 
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Routine Gen - Smart Academic Routine Generator">
-  <meta name="twitter:description" content="Generate conflict-free college routines and timetables client-side with smart slot assignment, teacher availability checks, and Excel or PDF exports.">
+  <meta name="twitter:title" content="Routine Gen - Conflict-Free College Routine &amp; Timetable Generator">
+  <meta name="twitter:description" content="Free, 100% client-side college routine generator and timetable builder. Eliminate teacher clashes with exact clock-minute scheduling and instant Excel/PDF export.">
   <meta name="twitter:image" content="https://routinegen.vercel.app/icons/icon-512.png">
-  <meta name="twitter:image:alt" content="Routine Gen - Smart Academic Routine Generator">
+  <meta name="twitter:image:alt" content="Routine Gen - Conflict-Free College Routine &amp; Timetable Generator">
 
-  <!-- JSON-LD Structured Data (AEO & GEO Optimized) -->
+  <!-- Generative Engine Optimization (GEO) & LLM Documentation Discovery -->
+  <link rel="alternate" type="text/markdown" title="LLMs Context" href="https://routinegen.vercel.app/llms.txt">
+  <link rel="alternate" type="text/markdown" title="Full LLMs Documentation" href="https://routinegen.vercel.app/llms-full.txt">
+
+  <!-- Core Libraries: Bootstrap 5.3 + Bootstrap Icons + SheetJS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+  <!-- Custom Hero & Landing Page Styles -->
+  <link rel="stylesheet" href="css/hero.css">
+
+  <!-- JSON-LD Structured Data (AEO & GEO Optimized: WebApplication, HowTo, FAQPage) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -43,27 +58,68 @@
         "@type": "WebApplication",
         "@id": "https://routinegen.vercel.app/#webapp",
         "name": "Routine Gen",
-        "alternateName": ["RoutineGen", "Routine Gen - Smart Routine Generator"],
+        "alternateName": ["RoutineGen", "Routine Gen - Smart College Routine Generator"],
         "url": "https://routinegen.vercel.app/",
         "applicationCategory": "EducationalApplication",
-        "operatingSystem": "Any",
-        "browserRequirements": "Requires JavaScript. Requires HTML5.",
-        "description": "Routine Gen is a free, 100% client-side academic routine and college timetable generator with automated teacher clash detection, multi-period lab allocation, and Excel/PDF export capabilities.",
+        "applicationSubCategory": "Timetable & Scheduling Software",
+        "operatingSystem": "Any (Web, Windows, macOS, Linux, Android, iOS)",
+        "browserRequirements": "Requires HTML5 & JavaScript",
+        "description": "Routine Gen is a free, 100% client-side college routine generator and timetable builder with mathematical clock-minute clash detection, multi-period lab allocation, and Excel/PDF export.",
         "inLanguage": "en",
         "isAccessibleForFree": true,
+        "image": "https://routinegen.vercel.app/icons/icon-512.png",
+        "screenshot": "https://routinegen.vercel.app/demo-pics/manual-wizard-settings.png",
         "offers": {
           "@type": "Offer",
           "price": "0",
           "priceCurrency": "USD"
         },
+        "author": {
+          "@type": "Person",
+          "name": "Krishnendu",
+          "url": "https://github.com/krishcode404"
+        },
         "featureList": [
-          "100% client-side timetable generation and conflict resolution",
-          "Teacher availability check based on actual clock minutes",
-          "Multi-period practical lab allocation (1 and 2 periods)",
-          "3-Sheet Excel bulk import and template generator (.xlsx/.xls)",
-          "Printer-ready landscape PDF export via jsPDF",
+          "100% client-side timetable generation with zero cloud storage",
+          "Exact clock-minute conflict detection across non-aligned department bell schedules",
+          "Contiguous 2-period practical lab allocation without teacher overlaps",
+          "Standardized 3-sheet Excel bulk import and template generator (.xlsx/.xls)",
+          "Live JSON timetable importer and interactive conflict resolution engine",
           "Progressive Web App (PWA) with full offline caching",
-          "Zero server telemetry — complete student and faculty privacy"
+          "Printer-ready landscape PDF export via jsPDF"
+        ]
+      },
+      {
+        "@type": "HowTo",
+        "@id": "https://routinegen.vercel.app/#howto",
+        "name": "How to Generate a Conflict-Free College Routine",
+        "description": "Four-step process to configure, generate, and export collision-free academic timetables.",
+        "totalTime": "PT5M",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Configure Timings & Periods",
+            "text": "Set up your institution's global periods per day, period duration (e.g. 45 mins), start clock, and tiffin break interval."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Add Academic Streams & Subjects",
+            "text": "Add streams (such as BCA, BBA, B.Sc) and semesters. Input theory subjects and flag multi-period laboratory courses."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Register Faculty & Availability",
+            "text": "Enter teacher names, their designated campus working days, and optional clock-time availability windows."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 4,
+            "name": "Generate & Export Conflict-Free Routines",
+            "text": "Click generate to compute clash-free routines across all departments simultaneously and download printer-ready Excel or PDF files."
+          }
         ]
       },
       {
@@ -72,34 +128,58 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "What is Routine Gen?",
+            "name": "Is Routine Gen completely free? Do I need to create an account?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Routine Gen is a free, client-side academic timetable generator designed for colleges, universities, and schools. It automatically schedules lectures and practical labs while preventing teacher overlaps across different departments and semesters."
+              "text": "Yes, Routine Gen is 100% free and open-source under the MIT license. You do not need an account, email, or credit card. You can start generating schedules immediately in your web browser."
             }
           },
           {
             "@type": "Question",
-            "name": "How does Routine Gen detect and prevent teacher clashes?",
+            "name": "Where is my college routine and faculty data stored?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Routine Gen computes timetable overlaps based on actual elapsed clock minutes rather than rigid period slots. If a teacher is assigned in Department A from 10:00 to 11:30, the algorithm prevents conflicting assignments in Department B during overlapping minutes."
+              "text": "Entirely on your local machine. Routine Gen operates 100% client-side using JavaScript. Zero faculty names, contact details, or institutional timetable data are ever transmitted to or stored on remote servers."
             }
           },
           {
             "@type": "Question",
-            "name": "Is timetable or faculty data stored on any server?",
+            "name": "Can I import my existing schedule data from Microsoft Excel?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Routine Gen executes entirely inside the user's web browser using JavaScript. No institutional data, faculty rosters, or timetable records are transmitted to or stored on remote servers."
+              "text": "Yes! You can download our standardized 3-sheet starter workbook (covering Departments & Timing, Subjects & Labs, and Teachers), fill it out in Excel or Google Sheets, and import it directly into Routine Gen in seconds."
             }
           },
           {
             "@type": "Question",
-            "name": "Can Routine Gen import schedules directly from Microsoft Excel?",
+            "name": "How does Routine Gen catch overlaps if semesters have different timings?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes. Routine Gen supports a standardized 3-sheet Excel workbook (.xlsx/.xls) to bulk import Departments & Timings (Sheet 1), Subjects & Labs (Sheet 2), and Teachers Directory (Sheet 3)."
+              "text": "Routine Gen translates every slot into actual start and end minutes since midnight (e.g. 10:15 AM = 615 minutes). When testing teacher availability, it runs mathematical interval overlap checks instead of comparing period numbers."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What happens if a class cannot be scheduled due to tight faculty constraints?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Instead of silently breaking your timetable, Routine Gen flags the slot honestly in an interactive Resolve Conflict screen. It shows you which faculty were checked and why they failed, and gives you one-click options to insert a Library or filler class."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does Routine Gen work on mobile devices?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Routine Gen is fully responsive and progressive web app (PWA) ready. You can review schedules, run generator checks, and inspect conflict resolutions from any modern smartphone or tablet browser."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I manually edit or adjust the routine after it's generated?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. If an impossible slot occurs, Routine Gen routes you directly into the interactive Resolve Conflict screen where you can assign custom filler periods (such as Library or Seminar hours). You can also export the timetable to Excel (.xlsx) to make freehand institutional edits anytime."
             }
           }
         ]
@@ -107,599 +187,808 @@
     ]
   }
   </script>
-
-  <meta name="google-site-verification" content="nARPq0-BdEiWT4SyoWrPRlOJbcvaBtam5SRCvgxjO2M" />
-
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <link rel="stylesheet" href="css/styles.css?v=2.2">
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-
-  <script>
-    (function() {
-      try {
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('from') === 'help' || urlParams.get('openExcel') === 'true') {
-          sessionStorage.setItem('routine_help_seen_session', 'true');
-        }
-        const dontShow = localStorage.getItem('routine_help_dont_show') === 'true';
-        const seenInSession = sessionStorage.getItem('routine_help_seen_session') === 'true';
-        if (!dontShow && !seenInSession) {
-          window.location.replace('help.html');
-        }
-      } catch (e) {}
-    })();
-  </script>
 </head>
-<body class="bg-light-subtle min-vh-100 py-3 py-md-5">
-  <div class="app-container">
+<body>
 
-    <header class="d-flex flex-row align-items-center justify-content-between pb-3 mb-3 pb-md-4 mb-md-4 border-bottom gap-2">
-      <div class="d-flex align-items-center gap-2 gap-sm-3">
-        <div>
-          <h1 class="h3 mb-0 fw-bold text-dark tracking-tight d-flex align-items-center gap-2">
-            <i class="bi bi-calendar3-range text-primary"></i> Routine Gen
-          </h1>
-          <p class="text-muted small mb-0 d-none d-sm-block">Generate conflict-free academic schedules effortlessly</p>
-        </div>
+  <!-- Transition Loading Screen (Pure Minimalist SVG & Loading Wizard) -->
+  <div id="wizard-loader-overlay" class="wizard-loader-overlay" aria-hidden="true" role="status" aria-live="polite">
+    <div class="loader-backdrop"></div>
+    <div class="loader-content">
+      <!-- Pure SVG Logo with Soft Blur Halo & Beeping Rings -->
+      <div class="loader-logo-wrap">
+        <span class="beep-ring ring-1" aria-hidden="true"></span>
+        <span class="beep-ring ring-2" aria-hidden="true"></span>
+        <span class="beep-ring ring-3" aria-hidden="true"></span>
+        <div class="loader-icon-glow" aria-hidden="true"></div>
+        <svg class="loader-pure-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="56" height="56" fill="#ffffff" aria-hidden="true">
+          <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857z"/>
+          <path d="M7 10a1 1 0 0 0 0-2H1v2zm2-3h6V5H9a1 1 0 0 0 0 2"/>
+        </svg>
       </div>
-      <div class="d-flex align-items-center gap-1.5 gap-sm-2 flex-wrap justify-content-end">
-        <button type="button" class="btn btn-outline-success nav-icon-btn px-2.5 px-sm-3 py-1.5 py-sm-2 d-flex align-items-center gap-1.5 fw-semibold" data-bs-toggle="modal" data-bs-target="#excelActionModal" title="Excel: Download Template or Import">
-          <i class="bi bi-file-earmark-excel"></i> <span class="d-none d-sm-inline">Excel</span>
+
+      <!-- Loading Typography -->
+      <div class="loader-title" role="status">
+        Loading Wizard<span class="loader-ellipsis" aria-hidden="true"><span>.</span><span>.</span><span>.</span></span>
+      </div>
+      <p class="loader-subtitle">Get ready to make your routine</p>
+
+      <!-- Pure White Micro Progress Bar -->
+      <div class="loader-progress-rail" aria-hidden="true">
+        <div class="loader-progress-bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ambient Glow Behind Hero -->
+  <div class="hero-glow-bg" aria-hidden="true"></div>
+
+  <!-- 1. Sticky Navigation Header -->
+  <header class="hero-nav py-3">
+    <div class="hero-container d-flex align-items-center justify-content-between">
+      <div class="d-flex align-items-center gap-3">
+        <a href="index.html" class="text-decoration-none d-flex align-items-center gap-2">
+          <i class="bi bi-calendar3-range text-white fs-4" aria-hidden="true"></i>
+          <span class="fw-bold fs-5 text-white tracking-tight">Routine Gen</span>
+        </a>
+      </div>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="d-none d-md-flex align-items-center gap-1" aria-label="Main Navigation">
+        <a href="#problem" class="nav-link-custom">The Problem</a>
+        <a href="#how-it-works" class="nav-link-custom">How It Works</a>
+        <a href="#features" class="nav-link-custom">Features</a>
+        <a href="#faq" class="nav-link-custom">FAQ</a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="d-flex align-items-center gap-2">
+        <a href="wizard.html" class="btn-nav-primary">
+          <span>Build Routine</span>
+          <i class="bi bi-arrow-right arrow-interactive" aria-hidden="true"></i>
+        </a>
+        
+        <!-- Mobile Menu Toggle Button -->
+        <button class="btn btn-outline-secondary btn-sm d-md-none px-2 py-1 ms-1 text-white border-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileNavMenu" aria-controls="mobileNavMenu" aria-label="Open Navigation Menu">
+          <i class="bi bi-list fs-5" aria-hidden="true"></i>
         </button>
-        <a href="json-import.html" class="btn btn-outline-primary nav-icon-btn px-2.5 px-sm-3 py-1.5 py-sm-2 d-flex align-items-center gap-1.5 fw-semibold" title="Add routine entries via JSON">
-          <i class="bi bi-filetype-json"></i> <span class="d-none d-sm-inline">JSON</span>
-        </a>
-        <a href="help.html" class="btn btn-outline-secondary nav-icon-btn px-2.5 px-sm-3 py-1.5 py-sm-2 d-flex align-items-center gap-1.5 fw-semibold" title="User Guide &amp; Help">
-          <i class="bi bi-question-circle"></i> <span class="d-none d-sm-inline">Help</span>
-        </a>
-      </div>
-    </header>
-
-    <!-- Steps... -->
-    <div class="row mb-3 mb-md-4 justify-content-center">
-      <div class="col-12">
-        <div class="card border-0 shadow-sm wizard-card">
-          <div class="card-body p-0">
-            <ul id="progressTracker" class="nav nav-pills nav-fill">
-              <li class="nav-item">
-                <span class="nav-link step-item active" data-step="1">
-                  <i class="bi bi-gear-fill"></i><span class="d-none d-sm-inline ms-1">Settings</span><span class="d-sm-none ms-1">Setup</span>
-                </span>
-              </li>
-              <li class="nav-item">
-                <span class="nav-link step-item text-muted" data-step="2">
-                  <i class="bi bi-building-fill"></i><span class="d-none d-sm-inline ms-1">Departments</span><span class="d-sm-none ms-1">Depts</span>
-                </span>
-              </li>
-              <li class="nav-item">
-                <span class="nav-link step-item text-muted" data-step="3">
-                  <i class="bi bi-person-workspace"></i><span class="d-none d-sm-inline ms-1">Teachers</span><span class="d-sm-none ms-1">Faculty</span>
-                </span>
-              </li>
-              <li class="nav-item">
-                <span class="nav-link step-item text-muted" data-step="4">
-                  <i class="bi bi-calendar-check-fill"></i><span class="d-none d-sm-inline ms-1">Routines</span><span class="d-sm-none ms-1">Routine</span>
-                </span>
-              </li>
-            </ul>
-          </div>
-        </div>
       </div>
     </div>
+  </header>
 
-    <!-- Sections -->
-    <main>
-      <!-- 1: Settings -->
-      <section id="step1">
-        <div class="card border-0 shadow-sm mb-4">
-          <div class="card-header bg-white border-0 pt-4 pb-0">
-            <h2 class="h4 card-title fw-bold text-dark d-flex align-items-center gap-2">
-              <i class="bi bi-gear-fill text-primary"></i> Global Configuration
-            </h2>
-            <p class="text-muted small">Establish default values for the scheduling generation engine.</p>
-          </div>
-          <div class="card-body">
-            <div class="row g-3 g-md-4">
-              <div class="col-12 col-md-6 col-xl-4">
-                <label for="settings-periods" class="form-label fw-semibold text-secondary small">Total Periods per Day</label>
-                <input type="number" class="form-control form-control-lg" id="settings-periods" value="8" min="1" max="12">
-              </div>
-              <div class="col-12 col-md-6 col-xl-4">
-                <label for="settings-duration" class="form-label fw-semibold text-secondary small">Period Duration (mins)</label>
-                <input type="number" class="form-control form-control-lg" id="settings-duration" value="45" min="15" max="180">
-              </div>
-              <div class="col-12 col-md-6 col-xl-4">
-                <label for="settings-time" class="form-label fw-semibold text-secondary small">College Start Time</label>
-                <input type="time" class="form-control form-control-lg" id="settings-time" value="09:00">
-              </div>
-              <div class="col-12 col-md-6 col-xl-6">
-                <label for="settings-tiffin-period" class="form-label fw-semibold text-secondary small">Tiffin Break Period (After period #)</label>
-                <input type="number" class="form-control form-control-lg" id="settings-tiffin-period" value="4" min="1" max="11">
-              </div>
-              <div class="col-12 col-md-6 col-xl-6">
-                <label for="settings-tiffin-duration" class="form-label fw-semibold text-secondary small">Tiffin Duration (mins)</label>
-                <input type="number" class="form-control form-control-lg" id="settings-tiffin-duration" value="30" min="15" max="120">
-              </div>
-            </div>
-            <div class="d-flex justify-content-end mt-4 pt-3 border-top border-light">
-              <button class="btn btn-primary btn-lg px-4 py-2.5 fw-semibold shadow-sm d-flex align-items-center justify-content-center gap-2 w-100 w-sm-auto" onclick="goToStep(2)">
-                Next Step <i class="bi bi-arrow-right"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 2: Departments & Semesters -->
-      <section id="step2" class="hidden">
-        <div class="card border-0 shadow-sm mb-4">
-          <div class="card-header bg-white border-0 pt-3 pt-md-4 pb-0 d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-2 gap-md-3">
-            <div class="header-title-wrap flex-grow-1">
-              <h2 class="card-title fw-bold text-dark d-flex align-items-center gap-2 mb-1 fs-5 fs-md-4">
-                <i class="bi bi-building-fill text-primary flex-shrink-0"></i>
-                <span><span class="d-none d-sm-inline">Manage </span>Departments &amp; Semesters</span>
-              </h2>
-              <p class="text-muted small mb-0 d-none d-md-block">Each department can have its own semesters, subjects, and class timings.</p>
-            </div>
-            <div class="d-flex gap-2 flex-wrap w-100 w-sm-auto justify-content-sm-end flex-shrink-0">
-              <button type="button" class="btn btn-sm btn-outline-secondary flex-fill flex-sm-grow-0" id="btn-download-dept-template" title="Download Excel template for departments, subjects and timings">
-                <i class="bi bi-download"></i> <span class="d-none d-sm-inline">Download Template</span><span class="d-sm-none">Template</span>
-              </button>
-              <button type="button" class="btn btn-sm btn-primary flex-fill flex-sm-grow-0" id="btn-import-dept-excel" title="Import departments, subjects and timings from an Excel file">
-                <i class="bi bi-file-earmark-excel"></i> <span class="d-none d-sm-inline">Import from Excel</span><span class="d-sm-none">Import</span>
-              </button>
-              <input type="file" id="excel-file-dept" accept=".xlsx, .xls" class="d-none">
-            </div>
-          </div>
-          <div class="card-body">
-            <div id="dept-excel-status" class="alert d-none mb-4 small" role="alert"></div>
-            <div class="row g-4">
-              <!-- Department Management Card -->
-              <div class="col-12 col-lg-5 col-xxl-4">
-                <div class="p-4 bg-light rounded-4 border border-light-subtle h-100 d-flex flex-column">
-                  <h3 class="fw-bold mb-3 small text-uppercase tracking-wider text-secondary">Add Department</h3>
-                  <form id="dept-form" class="d-flex gap-2 mb-4">
-                    <input type="text" class="form-control" id="dept-name" placeholder="e.g. BCA" required>
-                    <button type="submit" class="btn btn-primary fw-semibold shadow-sm px-3" id="btn-submit-dept">
-                      <i class="bi bi-plus-lg"></i>
-                    </button>
-                  </form>
-
-                  <div class="border-top border-light-subtle pt-4 d-flex flex-column flex-grow-1" style="min-height: 0;">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                      <h3 class="fw-bold mb-0 small text-uppercase tracking-wider text-secondary">
-                        Registered Departments
-                      </h3>
-                      <span class="badge bg-secondary-subtle text-secondary rounded-pill px-2.5 py-1" id="dept-count-badge">0</span>
-                    </div>
-                    <ul id="dept-list" class="list-group border-0 p-0 mb-0 custom-slim-scrollbar flex-grow-1" style="overflow-y: auto; min-height: 0;">
-                      <!-- JavaScript -->
-                    </ul>
-                    <div id="dept-empty" class="text-center text-muted my-auto py-5">
-                      <i class="bi bi-building text-secondary opacity-50 mb-2 fs-1 d-block"></i>
-                      <p class="mb-0">No departments added yet. Add at least one to continue.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Semester Management Panel -->
-              <div class="col-12 col-lg-7 col-xxl-8">
-                <div id="semester-panel-placeholder" class="text-center text-muted p-5 border border-light-subtle rounded-4 bg-light h-100 d-flex flex-column justify-content-center align-items-center">
-                  <i class="bi bi-layers text-secondary opacity-50 mb-3 fs-1 d-block"></i>
-                  <p class="mb-0">Add a department, then click <strong>Manage Semesters</strong> to add Sem 1, 2, 3, 4&hellip; along with their subjects and timings.</p>
-                </div>
-
-                <div id="semester-panel" class="p-4 bg-light rounded-4 border border-light-subtle h-100 d-none d-flex flex-column">
-                  <h3 class="fw-bold mb-3 small text-uppercase tracking-wider text-secondary">
-                    Semesters for <span id="semester-panel-dept-name" class="text-primary"></span>
-                  </h3>
-
-                  <div id="existing-semester-list" class="mb-4">
-                    <!-- JavaScript -->
-                  </div>
-
-                  <div class="p-4 bg-body rounded-4 border border-light-subtle mt-auto">
-                    <label class="form-label fw-bold small text-secondary text-uppercase tracking-wide mb-2.5 d-block">Add / Edit Semester</label>
-
-                    <div class="mb-3 d-flex flex-wrap gap-2">
-                      <button type="button" class="btn btn-sm btn-outline-secondary sem-preset-btn" data-label="Semester 1">Sem 1</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary sem-preset-btn" data-label="Semester 2">Sem 2</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary sem-preset-btn" data-label="Semester 3">Sem 3</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary sem-preset-btn" data-label="Semester 4">Sem 4</button>
-                    </div>
-
-                    <div class="mb-3">
-                      <label for="sem-label" class="form-label text-muted small mb-1">Semester Label</label>
-                      <input type="text" class="form-control form-control-sm" id="sem-label" placeholder="e.g. Semester 1">
-                    </div>
-
-                    <div class="mb-4">
-                      <label class="form-label text-muted small mb-1 d-block">Timing for this semester (independent from other semesters &mdash; a class only clashes when its actual clock time overlaps another one)</label>
-                      <div class="row g-2">
-                        <div class="col-6 col-md-4 col-xl">
-                          <label class="form-label text-muted" style="font-size: 0.7rem;">Periods/day</label>
-                          <input type="number" class="form-control form-control-sm" id="sem-periods" min="1" max="12">
-                        </div>
-                        <div class="col-6 col-md-4 col-xl">
-                          <label class="form-label text-muted" style="font-size: 0.7rem;">Period (mins)</label>
-                          <input type="number" class="form-control form-control-sm" id="sem-duration" min="15" max="180">
-                        </div>
-                        <div class="col-6 col-md-4 col-xl">
-                          <label class="form-label text-muted" style="font-size: 0.7rem;">Start Time</label>
-                          <input type="time" class="form-control form-control-sm" id="sem-start-time">
-                        </div>
-                        <div class="col-6 col-md-4 col-xl">
-                          <label class="form-label text-muted" style="font-size: 0.7rem;">Tiffin after period #</label>
-                          <input type="number" class="form-control form-control-sm" id="sem-tiffin-period" min="1" max="11">
-                        </div>
-                        <div class="col-6 col-md-4 col-xl">
-                          <label class="form-label text-muted" style="font-size: 0.7rem;">Tiffin (mins)</label>
-                          <input type="number" class="form-control form-control-sm" id="sem-tiffin-duration" min="15" max="120">
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- Subject Builder -->
-                    <div class="builder-subcard">
-                      <label class="form-label fw-bold small text-secondary text-uppercase tracking-wide mb-2 d-block">Add Subjects for this Semester</label>
-                      <div class="row g-2 align-items-end">
-                        <div class="col-12 col-sm-5 col-xl-5">
-                          <label for="subject-input-name" class="form-label text-muted small mb-1">Subject</label>
-                          <input type="text" class="form-control form-control-sm" id="subject-input-name" placeholder="e.g. OS">
-                        </div>
-                        <div class="col-9 col-sm-5 col-xl-5">
-                          <label for="subject-input-type" class="form-label text-muted small mb-1">Type</label>
-                          <select class="form-select form-select-sm" id="subject-input-type">
-                            <option value="theory">Theory (1 period)</option>
-                            <option value="theory_extended">Theory Extended (2 periods)</option>
-                            <option value="lab_mini">Lab (1 period)</option>
-                            <option value="lab_extended">Lab Extended (2 periods)</option>
-                            <option value="theory_lab">Theory + Lab (2 periods)</option>
-                          </select>
-                        </div>
-                        <div class="col-3 col-sm-2 col-xl-2">
-                          <button type="button" id="btn-add-subject-to-list" class="btn btn-sm btn-outline-primary w-100 fw-bold d-flex justify-content-center align-items-center gap-1" style="padding-top: 0.28rem; padding-bottom: 0.28rem;" title="Add Subject">
-                            <i class="bi bi-plus-lg"></i> <span class="d-inline d-sm-none">Add</span>
-                          </button>
-                        </div>
-                      </div>
-                      <div id="builder-subjects-list" class="d-flex flex-wrap gap-1.5 mt-3">
-                        <!-- Temp subjects badges -->
-                      </div>
-                    </div>
-
-                    <div class="d-flex gap-2">
-                      <button type="button" class="btn btn-outline-secondary px-3 fw-semibold" id="btn-cancel-semester">Cancel</button>
-                      <button type="button" class="btn btn-primary flex-fill py-2 fw-semibold shadow-sm" id="btn-save-semester" disabled>
-                        <i class="bi bi-plus-lg me-1"></i> Save Semester
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="d-flex justify-content-between mt-4 pt-3 border-top border-light">
-              <button class="btn btn-outline-secondary px-3 px-sm-4 py-2 fw-semibold d-flex align-items-center gap-2" onclick="goToStep(1)" title="Back to Step 1">
-                <i class="bi bi-arrow-left"></i> <span class="d-none d-sm-inline">Back</span>
-              </button>
-              <button class="btn btn-primary px-3 px-sm-4 py-2 fw-semibold shadow-sm d-flex align-items-center gap-2" id="btn-next-dept" onclick="goToStep(3)" disabled>
-                <span class="d-none d-sm-inline">Next Step</span><span class="d-sm-none">Next</span> <i class="bi bi-arrow-right"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 3: Teachers & Assignments -->
-      <section id="step3" class="hidden">
-        <div class="card border-0 shadow-sm mb-4">
-          <div class="card-header bg-white border-0 pt-3 pt-md-4 pb-0 d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-2 gap-md-3">
-            <div class="header-title-wrap flex-grow-1">
-              <h2 class="card-title fw-bold text-dark d-flex align-items-center gap-2 mb-1 fs-5 fs-md-4">
-                <i class="bi bi-person-workspace text-primary flex-shrink-0"></i>
-                <span><span class="d-none d-sm-inline">Manage </span>Teachers &amp; Assignments</span>
-              </h2>
-              <p class="text-muted small mb-0 d-none d-md-block">Configure teacher details, active working days, and course loads.</p>
-            </div>
-            <div class="d-flex gap-2 flex-wrap w-100 w-sm-auto justify-content-sm-end flex-shrink-0">
-              <button type="button" class="btn btn-sm btn-outline-secondary flex-fill flex-sm-grow-0" id="btn-download-teacher-template" title="Download Excel template for teachers">
-                <i class="bi bi-download"></i> <span class="d-none d-sm-inline">Download Template</span><span class="d-sm-none">Template</span>
-              </button>
-              <button type="button" class="btn btn-sm btn-primary flex-fill flex-sm-grow-0" id="btn-import-teacher-excel" title="Import teachers from an Excel file">
-                <i class="bi bi-file-earmark-excel"></i> <span class="d-none d-sm-inline">Import from Excel</span><span class="d-sm-none">Import</span>
-              </button>
-              <input type="file" id="excel-file-teacher" accept=".xlsx, .xls" class="d-none">
-            </div>
-          </div>
-          <div class="card-body">
-            <div id="teacher-excel-status" class="alert d-none mb-4 small" role="alert"></div>
-            <div class="row g-4">
-              <!-- Add Teacher Form Card -->
-              <div class="col-12 col-lg-5 col-xxl-4">
-                <div class="p-4 bg-light rounded-4 border border-light-subtle h-100 d-flex flex-column">
-                  <h3 class="fw-bold mb-3 small text-uppercase tracking-wider text-secondary">Add New Teacher</h3>
-                  
-                  <div class="mb-3">
-                    <label for="teacher-name" class="form-label fw-semibold text-secondary small">Teacher Name</label>
-                    <input type="text" class="form-control" id="teacher-name" placeholder="e.g. Dr. Krish">
-                  </div>
-
-                  <div class="mb-3">
-                    <label class="form-label fw-semibold text-secondary d-block small">Working Days</label>
-                    <div class="d-flex flex-wrap gap-2" id="teacher-days">
-                      <input type="checkbox" class="btn-check" id="day-mon" value="Monday" autocomplete="off">
-                      <label class="btn btn-outline-secondary btn-sm px-2.5 py-1.5 fw-semibold flex-fill text-center" for="day-mon">Mon</label>
-
-                      <input type="checkbox" class="btn-check" id="day-tue" value="Tuesday" autocomplete="off">
-                      <label class="btn btn-outline-secondary btn-sm px-2.5 py-1.5 fw-semibold flex-fill text-center" for="day-tue">Tue</label>
-
-                      <input type="checkbox" class="btn-check" id="day-wed" value="Wednesday" autocomplete="off">
-                      <label class="btn btn-outline-secondary btn-sm px-2.5 py-1.5 fw-semibold flex-fill text-center" for="day-wed">Wed</label>
-
-                      <input type="checkbox" class="btn-check" id="day-thu" value="Thursday" autocomplete="off">
-                      <label class="btn btn-outline-secondary btn-sm px-2.5 py-1.5 fw-semibold flex-fill text-center" for="day-thu">Thu</label>
-
-                      <input type="checkbox" class="btn-check" id="day-fri" value="Friday" autocomplete="off">
-                      <label class="btn btn-outline-secondary btn-sm px-2.5 py-1.5 fw-semibold flex-fill text-center" for="day-fri">Fri</label>
-
-                      <input type="checkbox" class="btn-check" id="day-sat" value="Saturday" autocomplete="off">
-                      <label class="btn btn-outline-secondary btn-sm px-2.5 py-1.5 fw-semibold flex-fill text-center" for="day-sat">Sat</label>
-                    </div>
-                  </div>
-
-                  <div class="mb-4">
-                    <label class="form-label fw-semibold text-secondary d-block small">Available Hours <span class="text-muted fw-normal">(optional &mdash; leave blank if available all day)</span></label>
-                    <div class="row g-2">
-                      <div class="col-6">
-                        <label for="teacher-avail-start" class="form-label text-muted" style="font-size: 0.7rem;">From</label>
-                        <input type="time" class="form-control form-control-sm" id="teacher-avail-start">
-                      </div>
-                      <div class="col-6">
-                        <label for="teacher-avail-end" class="form-label text-muted" style="font-size: 0.7rem;">To</label>
-                        <input type="time" class="form-control form-control-sm" id="teacher-avail-end">
-                      </div>
-                    </div>
-                    <p class="text-muted mb-0 mt-1" style="font-size: 0.75rem;">If the teacher is only in college between certain hours (e.g. 1 PM&ndash;4 PM), classes outside that window won't be assigned to them.</p>
-                  </div>
-
-                  <!-- Assignment Subcard -->
-                  <div class="builder-subcard">
-                    <label class="form-label fw-bold small text-secondary text-uppercase tracking-wide mb-2 d-block">Assign Dept, Semester & Subject</label>
-                    <div class="row g-2">
-                      <div class="col-12">
-                        <label for="assign-dept" class="form-label text-muted small mb-1">Department</label>
-                        <select class="form-select form-select-sm" id="assign-dept">
-                          <option value="">-- Select Dept --</option>
-                        </select>
-                      </div>
-                      <div class="col-12 col-sm-6">
-                        <label for="assign-sem" class="form-label text-muted small mb-1">Semester</label>
-                        <select class="form-select form-select-sm" id="assign-sem" disabled>
-                          <option value="">-- Select Semester --</option>
-                        </select>
-                      </div>
-                      <div class="col-12 col-sm-6">
-                        <label for="assign-sub" class="form-label text-muted small mb-1">Subject</label>
-                        <select class="form-select form-select-sm" id="assign-sub" disabled>
-                          <option value="">-- Select Subject --</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="d-flex justify-content-end mt-3">
-                      <button id="btn-add-assign" class="btn btn-sm btn-outline-primary px-3 fw-bold d-flex justify-content-center align-items-center gap-1 w-100 w-sm-auto" disabled>
-                        <i class="bi bi-plus-lg"></i> Add Assignment
-                      </button>
-                    </div>
-                    <div id="temp-assignments-list" class="d-flex flex-column flex-sm-row flex-wrap gap-2 mt-3 w-100">
-                      <!-- Temp Badges populated dynamically -->
-                    </div>
-                  </div>
-
-                  <div class="d-flex gap-2 mt-auto">
-                    <button type="button" class="btn btn-outline-secondary px-3 fw-semibold d-none" id="btn-cancel-teacher">Cancel</button>
-                    <button id="btn-add-teacher" class="btn btn-primary flex-fill py-2.5 fw-semibold shadow-sm" disabled>
-                      <i class="bi bi-plus-lg me-1"></i> Add Teacher
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Teacher Directory Table Card -->
-              <div class="col-12 col-lg-7 col-xxl-8">
-                <div class="p-4 bg-light rounded-4 border border-light-subtle h-100 d-flex flex-column">
-                  <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h3 class="fw-bold mb-0 small text-uppercase tracking-wider text-secondary">Active Teachers Directory</h3>
-                    <span class="badge bg-secondary-subtle text-secondary rounded-pill px-2.5 py-1" id="teacher-count-badge">0</span>
-                  </div>
-                  <div class="teacher-table-wrapper flex-grow-1 border border-light-subtle rounded-3 bg-body custom-slim-scrollbar" style="min-height: 0;">
-                    <table class="table table-hover align-middle mb-0 teacher-directory-table">
-                      <thead class="table-light text-secondary small">
-                        <tr>
-                          <th class="fw-semibold ps-3" style="min-width: 150px; white-space: nowrap;">Name</th>
-                          <th class="fw-semibold" style="min-width: 120px; white-space: nowrap;">Working Days</th>
-                          <th class="fw-semibold" style="min-width: 130px;">Available Hours</th>
-                          <th class="fw-semibold" style="min-width: 180px;">Assignments</th>
-                          <th class="fw-semibold text-center" style="min-width: 90px;">Actions</th>
-                        </tr>
-                      </thead>
-                      <tbody id="teacher-list">
-                        <!-- JavaScript -->
-                      </tbody>
-                    </table>
-                  </div>
-                  <div id="teacher-empty" class="text-center text-muted my-auto py-5">
-                    <i class="bi bi-person-video3 text-secondary opacity-50 mb-2 fs-1 d-block"></i>
-                    <p class="mb-0">No teachers added yet. Register at least one to generate routine.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="d-flex justify-content-between mt-4 pt-3 border-top border-light">
-              <button class="btn btn-outline-secondary px-3 px-sm-4 py-2 fw-semibold d-flex align-items-center gap-2" onclick="goToStep(2)" title="Back to Step 2">
-                <i class="bi bi-arrow-left"></i> <span class="d-none d-sm-inline">Back</span>
-              </button>
-              <button class="btn btn-success px-3 px-sm-4 py-2 fw-semibold shadow-sm d-flex align-items-center gap-2" id="btn-generate" onclick="generateRoutine()" disabled>
-                Generate Routine <i class="bi bi-arrow-right"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 4: Generated Routines -->
-      <section id="step4" class="hidden">
-        <div id="routine-viewer">
-          <!-- JavaScript -->
-        </div>
-      </section>
-    </main>
-  </div>
-
-  <!-- Restore Session Modal -->
-  <div class="modal fade" id="restoreModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="restoreModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content border-0 shadow-lg">
-        <div class="modal-header border-0 py-3">
-          <h3 class="modal-title fs-5 fw-bold" id="restoreModalLabel">
-            <i class="bi bi-arrow-counterclockwise me-2"></i>Restore Session?
-          </h3>
-        </div>
-        <div class="modal-body p-4">
-          <p class="mb-0 text-secondary">We found a saved routine scheduling session. Would you like to resume from where you left off, or start a new scheduling session?</p>
-        </div>
-        <div class="modal-footer border-0 p-3 pt-0">
-          <button type="button" class="btn btn-outline-secondary px-4" id="btn-start-new">Start New</button>
-          <button type="button" class="btn btn-primary px-4 fw-bold" id="btn-resume-session">Let's Go</button>
-        </div>
-      </div>
+  <!-- Mobile Offcanvas Menu -->
+  <div class="offcanvas offcanvas-end bg-black text-white border-start border-secondary" tabindex="-1" id="mobileNavMenu" aria-labelledby="mobileNavMenuLabel">
+    <div class="offcanvas-header border-bottom border-secondary">
+      <h5 class="offcanvas-title fw-bold text-white d-flex align-items-center gap-2" id="mobileNavMenuLabel">
+        <i class="bi bi-calendar3-range text-white" aria-hidden="true"></i> Routine Gen
+      </h5>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column gap-3 pt-4">
+      <a href="#problem" class="nav-link-custom fs-5" data-bs-dismiss="offcanvas">The Problem</a>
+      <a href="#how-it-works" class="nav-link-custom fs-5" data-bs-dismiss="offcanvas">How It Works</a>
+      <a href="#features" class="nav-link-custom fs-5" data-bs-dismiss="offcanvas">Features</a>
+      <a href="#faq" class="nav-link-custom fs-5" data-bs-dismiss="offcanvas">FAQ</a>
+      <hr class="border-secondary my-2">
+      <a href="wizard.html" class="btn-hero-primary-unified w-100 mt-2">
+        <span>Build Routine</span>
+        <i class="bi bi-arrow-right arrow-interactive" aria-hidden="true"></i>
+      </a>
     </div>
   </div>
 
-  <!-- Conflict Resolution Modal: fills a conflicting slot with a Library/custom class -->
-  <div class="modal fade" id="fillerModal" tabindex="-1" aria-labelledby="fillerModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content border-0 shadow-lg">
-        <div class="modal-header border-0 py-3">
-          <h3 class="modal-title fs-5 fw-bold" id="fillerModalLabel">
-            <i class="bi bi-magic me-2"></i>Resolve Conflict Slot
-          </h3>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body p-4 pt-2">
-          <div id="filler-context" class="p-2 mb-3 bg-light rounded-3 border border-light-subtle small text-secondary"></div>
+  <!-- 2. Hero Section -->
+  <main>
+    <section class="hero-section text-center position-relative">
+      <div class="hero-container">
 
-          <div class="mb-3">
-            <label for="filler-slot" class="form-label fw-semibold small text-secondary">Target Period Slot</label>
-            <select class="form-select" id="filler-slot"></select>
-            <div id="filler-slot-note" class="small text-muted mt-1">Select which period slot to fill with this class.</div>
-          </div>
+        <!-- Headline & Subheadline -->
+        <h1 class="hero-title mt-2 reveal" style="--i:1">
+          College routines in minutes.<br>
+          <span class="hero-highlight">Zero double-bookings. Every time.</span>
+        </h1>
 
-          <div class="mb-3">
-            <label for="filler-choice" class="form-label fw-semibold small text-secondary">Class to insert</label>
-            <select class="form-select" id="filler-choice">
-              <option value="Library">Library</option>
-              <option value="__other__">Other (specify)&hellip;</option>
-            </select>
-          </div>
+        <p class="hero-subtitle reveal" style="--i:2">
+          Automate conflict-free schedules across multiple departments, different semester timings, and shared faculty. Zero signups, zero server uploads &mdash; runs completely private in your browser.
+        </p>
 
-          <div class="mb-3 d-none" id="filler-other-wrap">
-            <div class="mb-2">
-              <label for="filler-other-name" class="form-label fw-semibold small text-secondary">Subject Name</label>
-              <input type="text" class="form-control" id="filler-other-name" placeholder="e.g. Sports, Seminar or Project">
-            </div>
-            <div>
-              <label for="filler-other-teacher" class="form-label fw-semibold small text-secondary">Subject Teacher Name</label>
-              <input type="text" class="form-control" id="filler-other-teacher" placeholder="e.g. Dr. Krish or Dr. Arko">
-            </div>
-          </div>
-
-          <div class="mb-1">
-            <label for="filler-periods" class="form-label fw-semibold small text-secondary">Number of periods</label>
-            <select class="form-select" id="filler-periods">
-              <option value="1">1 period</option>
-              <option value="2">2 periods (consecutive)</option>
-            </select>
-          </div>
-        </div>
-        <div class="modal-footer border-0 p-3 pt-0">
-          <button type="button" class="btn btn-outline-secondary px-4" data-bs-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary px-4 fw-bold" id="btn-confirm-filler">
-            <i class="bi bi-check-lg me-1"></i> Insert
+        <!-- Centered Non-Stretched CTA Group (P0 Fix) -->
+        <div class="hero-cta-group reveal" style="--i:3">
+          <a href="wizard.html" class="btn-hero-primary-unified">
+            <span>Build Routine</span>
+            <i class="bi bi-arrow-right arrow-interactive fs-5" aria-hidden="true"></i>
+          </a>
+          <button type="button" class="btn-hero-ghost-template js-download-excel" title="Download Starter .xlsx Workbook">
+            <i class="bi bi-file-earmark-excel text-success" aria-hidden="true"></i>
+            <span>Download Excel Template</span>
           </button>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- Excel Quick Actions Modal (Download Template or Import) -->
-  <div class="modal fade" id="excelActionModal" tabindex="-1" aria-labelledby="excelActionModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content border-0 shadow-lg">
-        <div class="modal-header border-0 py-3">
-          <h3 class="modal-title fs-5 fw-bold text-dark d-flex align-items-center gap-2" id="excelActionModalLabel">
-            <i class="bi bi-file-earmark-excel text-success"></i> Excel Bulk Setup
-          </h3>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <!-- High-Contrast Trust Metrics Row (P1 Fix) -->
+        <div class="trust-badges-row d-flex align-items-center justify-content-center gap-3 gap-md-4 pt-3 flex-wrap reveal" style="--i:4">
+          <span class="d-inline-flex align-items-center gap-1.5"><i class="bi bi-check2-circle text-success" aria-hidden="true"></i> No login or account required</span>
+          <span class="d-inline-flex align-items-center gap-1.5"><i class="bi bi-check2-circle text-success" aria-hidden="true"></i> Free &amp; Open Source</span>
+          <span class="d-inline-flex align-items-center gap-1.5"><i class="bi bi-check2-circle text-success" aria-hidden="true"></i> Instant Excel &amp; PDF Export</span>
         </div>
-        <div class="modal-body p-4 pt-1">
-          <p class="text-secondary small mb-3">
-            Choose whether you want to download our official 3-sheet starter template or import an existing Excel workbook directly.
+
+      </div>
+    </section>
+
+    <!-- 3 Modes Showcase: Manual, Excel, JSON for Power Users -->
+    <section id="modes" class="section-padding">
+      <div class="hero-container">
+        <div class="text-center mb-4 reveal">
+          <span class="section-tag">Flexible Ingestion Channels</span>
+          <h2 class="section-heading">Three ways to build your routine</h2>
+          <p class="section-lead mx-auto">
+            Choose the input method that fits your college workflow &mdash; from a guided step-by-step wizard to bulk Excel onboarding and developer-grade JSON.
           </p>
 
-          <div id="header-excel-status" class="alert d-none mb-3 small" role="alert"></div>
+          <!-- Mode Navigation Pills -->
+          <div class="d-inline-flex justify-content-center mt-4">
+            <div class="modes-nav-pills" role="tablist">
+              <button class="mode-tab-pill active" id="tab-btn-manual" data-bs-toggle="pill" data-bs-target="#pane-manual" type="button" role="tab" aria-selected="true">
+                <i class="bi bi-ui-checks text-white" aria-hidden="true"></i>
+                <span>Manual Wizard</span>
+              </button>
+              <button class="mode-tab-pill" id="tab-btn-excel" data-bs-toggle="pill" data-bs-target="#pane-excel" type="button" role="tab" aria-selected="false">
+                <i class="bi bi-file-earmark-excel text-success" aria-hidden="true"></i>
+                <span>Excel Mode</span>
+              </button>
+              <button class="mode-tab-pill" id="tab-btn-json" data-bs-toggle="pill" data-bs-target="#pane-json" type="button" role="tab" aria-selected="false">
+                <i class="bi bi-code-square text-primary" aria-hidden="true"></i>
+                <span>JSON for Power Users</span>
+              </button>
+            </div>
+          </div>
+        </div>
 
-          <div class="d-grid gap-2 mb-3">
-            <!-- 1: Download Template -->
-            <button type="button" class="btn btn-success py-2.5 px-3 fw-bold d-flex align-items-center justify-content-between text-start" onclick="window.downloadRoutineTemplate()">
-              <span class="d-flex align-items-center gap-2">
-                <i class="bi bi-download fs-5"></i>
-                <span>
-                  <span class="d-block">Download Excel Template</span>
-                  <small class="fw-normal opacity-75" style="font-size: 0.75rem;">Pre-formatted 3-sheet starter workbook (.xlsx)</small>
-                </span>
-              </span>
-              <i class="bi bi-arrow-down-circle"></i>
-            </button>
+        <!-- Mode Tab Panes -->
+        <div class="tab-content">
+          
+          <!-- Mode 1: Manual Wizard (Step-by-Step Guided Walkthrough) -->
+          <div class="tab-pane fade show active" id="pane-manual" role="tabpanel">
+            <div class="mode-card-container">
+              <div class="row g-4 align-items-center">
+                <div class="col-12 col-lg-5">
+                  <h3 class="bento-card-title fs-3 mb-2">Step-by-Step Interactive Wizard</h3>
+                  <p id="wizard-step-description" class="bento-card-text mb-3">
+                    <strong>Step 1: Timings Setup.</strong> Define college start time, period durations, daily period count, and place your tiffin break. Each semester can inherit these or set its own schedule.
+                  </p>
+                  
+                  <!-- Wizard Step-by-Step Ordered Switcher (1 -> 2 -> 3 -> 4) -->
+                  <div class="mb-3">
+                    <div class="text-dim small fw-semibold mb-2">Walkthrough Step:</div>
+                    <div class="wizard-steps-grid" id="wizard-steps-group">
+                      <button type="button" class="wizard-mini-step-btn active" data-step="1" data-img="demo-pics/manual-wizard-settings.png" data-desc="Step 1: Timings Setup. Define global college timings, period durations (e.g. 45 mins), start time (e.g. 09:00), and place the tiffin break interval.">
+                        <i class="bi bi-gear-fill text-warning me-1"></i> 1. Timings Setup
+                      </button>
+                      <button type="button" class="wizard-mini-step-btn" data-step="2" data-img="demo-pics/manual-wizard-departments.png" data-desc="Step 2: Departments & Semesters. Add academic streams (BCA, BBA, B.Sc) and semesters. Configure theory courses and flag contiguous 2-period labs.">
+                        <i class="bi bi-building text-info me-1"></i> 2. Departments
+                      </button>
+                      <button type="button" class="wizard-mini-step-btn" data-step="3" data-img="demo-pics/manual-wizard-faculty.png" data-desc="Step 3: Faculty Roster. Register teachers, specify active working days, and configure optional availability hours for visiting faculty.">
+                        <i class="bi bi-person-workspace text-primary me-1"></i> 3. Faculty Directory
+                      </button>
+                      <button type="button" class="wizard-mini-step-btn" data-step="4" data-img="demo-pics/manual-wizard-routines.png" data-desc="Step 4: Generated Routine. One click computes conflict-free routines across all departments simultaneously with instant Excel and PDF export.">
+                        <i class="bi bi-calendar-check-fill text-success me-1"></i> 4. Generated Routine
+                      </button>
+                    </div>
+                  </div>
 
-            <!-- 2: Import from Excel -->
-            <button type="button" class="btn btn-outline-primary py-2.5 px-3 fw-bold d-flex align-items-center justify-content-between text-start" onclick="document.getElementById('header-excel-file').click()">
-              <span class="d-flex align-items-center gap-2">
-                <i class="bi bi-upload fs-5"></i>
-                <span>
-                  <span class="d-block">Import from Excel File</span>
-                  <small class="fw-normal opacity-75" style="font-size: 0.75rem;">Load departments, timings, subjects &amp; faculty</small>
-                </span>
-              </span>
-              <i class="bi bi-file-earmark-plus"></i>
-            </button>
-            <input type="file" id="header-excel-file" accept=".xlsx, .xls" class="d-none">
+                  <!-- Step Navigation Controls -->
+                  <div class="d-flex align-items-center gap-2 mb-4 pt-1">
+                    <button type="button" class="btn btn-outline-secondary btn-sm px-3" id="btn-wizard-prev" disabled>
+                      <i class="bi bi-chevron-left"></i> Previous
+                    </button>
+                    <button type="button" class="btn btn-outline-primary btn-sm px-3" id="btn-wizard-next">
+                      Next Step <i class="bi bi-chevron-right"></i>
+                    </button>
+                    <span class="text-dim small ms-auto" id="wizard-step-counter">Step 1 of 4</span>
+                  </div>
+
+                  <a href="wizard.html" class="btn-hero-primary-unified">
+                    <span>Launch Wizard</span>
+                    <i class="bi bi-arrow-right arrow-interactive fs-5" aria-hidden="true"></i>
+                  </a>
+                </div>
+
+                <div class="col-12 col-lg-7">
+                  <div class="mode-preview-window">
+                    <img id="wizard-showcase-img" src="demo-pics/manual-wizard-settings.png" alt="Routine Gen Manual Wizard Step Interface" class="mode-preview-img" loading="lazy">
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <!-- 3: View Guide / Go to Builder Link -->
-          <div class="pt-2 border-top border-light-subtle d-flex justify-content-between align-items-center" id="header-excel-footer">
-            <span class="text-muted small" id="header-excel-footer-text">Need help with columns or rules?</span>
-            <div id="header-excel-footer-action">
-              <a href="help.html#excel" class="btn btn-sm btn-outline-secondary fw-semibold" id="btn-header-excel-guide">
-                <i class="bi bi-book me-1"></i> View Excel Guide
+          <!-- Mode 2: Excel Mode (Document Structure & Real Screenshots) -->
+          <div class="tab-pane fade" id="pane-excel" role="tabpanel">
+            <div class="mode-card-container">
+              <div class="row g-4 align-items-center mb-4">
+                <div class="col-12 col-lg-5">
+                  <h3 class="bento-card-title fs-3 mb-2">How the Excel Structure Works</h3>
+                  <p class="bento-card-text mb-3">
+                    Routine Gen uses a standardized 3-sheet workbook (`.xlsx`). You can populate a full college schedule in minutes with automated column normalization and fractional time parsing.
+                  </p>
+
+                  <!-- Sheet Switcher Tabs -->
+                  <div class="mb-3">
+                    <div class="text-dim small fw-semibold mb-2">Inspect Workbook Sheet Structure:</div>
+                    <div class="d-flex flex-wrap gap-2" id="excel-sheets-group">
+                      <button type="button" class="excel-sheet-pill-btn active" data-img="demo-pics/excel-sheet1-departments.jpg" data-desc="Sheet 1 (Departments & Timing): Configures stream names, semester labels, periods per day, period duration in minutes, start clock, and tiffin break settings.">
+                        <i class="bi bi-file-spreadsheet text-success me-1"></i> Sheet 1: Departments &amp; Timing
+                      </button>
+                      <button type="button" class="excel-sheet-pill-btn" data-img="demo-pics/excel-sheet2-subjects.jpg" data-desc="Sheet 2 (Subjects & Labs): Comma-separated curricula per semester. Any course placed in the Labs column automatically creates contiguous 2-period lab slots!">
+                        <i class="bi bi-flask text-success me-1"></i> Sheet 2: Subjects &amp; Labs
+                      </button>
+                      <button type="button" class="excel-sheet-pill-btn" data-img="demo-pics/excel-sheet3-teachers.jpg" data-desc="Sheet 3 (Teachers Directory): Lists faculty names, their active teaching weekdays, and optional clock-time windows (e.g. 10:00 to 15:30).">
+                        <i class="bi bi-people text-success me-1"></i> Sheet 3: Teachers Directory
+                      </button>
+                    </div>
+                  </div>
+
+                  <p id="excel-sheet-description" class="text-dim small mb-4">
+                    <strong>Sheet 1: Departments &amp; Timing.</strong> Configures stream names, semester labels, periods per day, period duration in minutes, start clock, and tiffin break settings.
+                  </p>
+
+                  <div class="d-flex flex-wrap gap-3">
+                    <button type="button" class="btn-hero-primary-unified js-download-excel">
+                      <i class="bi bi-download me-1"></i>
+                      <span>Download Starter .xlsx</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="col-12 col-lg-7">
+                  <div class="mode-preview-window">
+                    <img id="excel-showcase-img" src="demo-pics/excel-sheet1-departments.jpg" alt="Routine Gen Excel Sheet 1 Screenshot" class="mode-preview-img" loading="lazy">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Excel Column Schema Breakdown Table -->
+              <div class="border border-secondary border-opacity-25 rounded-3 p-3 bg-black">
+                <div class="text-white fw-bold small mb-2 d-flex align-items-center gap-2">
+                  <i class="bi bi-table text-success"></i> Standardized Column Specification
+                </div>
+                <div class="table-responsive">
+                  <table class="doc-struct-table">
+                    <thead>
+                      <tr>
+                        <th>Sheet Name</th>
+                        <th>Required Columns</th>
+                        <th>Format &amp; Rules</th>
+                        <th>Example Data</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="text-white fw-semibold">Sheet 1: Departments &amp; Timing</td>
+                        <td>Department, Semester, Periods/Day, Period Duration (mins), Start Time, Tiffin After Period #, Tiffin Duration (mins)</td>
+                        <td>Clock times in HH:MM (24-hr or 12-hr string, or Excel decimal fraction).</td>
+                        <td><code>BCA | Semester 1 | 8 | 45 | 09:00 | 4 | 30</code></td>
+                      </tr>
+                      <tr>
+                        <td class="text-white fw-semibold">Sheet 2: Subjects &amp; Labs</td>
+                        <td>Department, Semester, Subjects, Labs</td>
+                        <td>Comma-separated strings. Labs automatically generate 2-period contiguous blocks.</td>
+                        <td><code>BCA | Semester 1 | OS, DSA, Math | OS, DSA</code></td>
+                      </tr>
+                      <tr>
+                        <td class="text-white fw-semibold">Sheet 3: Teachers</td>
+                        <td>Name, Working Days, Available From, Available To</td>
+                        <td>Comma-separated weekdays. Available hours are optional; blank means all day.</td>
+                        <td><code>Dr. Sharma | Mon, Tue, Wed, Thu, Fri | 09:00 | 16:00</code></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Mode 3: JSON Mode (Document Structure & Real Screenshots) -->
+          <div class="tab-pane fade" id="pane-json" role="tabpanel">
+            <div class="mode-card-container">
+              <div class="row g-4 align-items-center mb-4">
+                <div class="col-12 col-lg-5">
+                  <h3 class="bento-card-title fs-3 mb-2">How the JSON Structure Works</h3>
+                  <p class="bento-card-text mb-3">
+                    Designed for programmers, developers, or institutional IT pipelines. Paste your schedule as JSON and watch Routine Gen run live clock-minute clash checks, auto-slot placement, and filler insertions.
+                  </p>
+
+                  <div class="bento-preview-box mb-4">
+                    <div class="text-primary mb-1"><i class="bi bi-cpu-fill me-1"></i> Real-Time Clash Evaluation</div>
+                    <div class="text-dim">Translates period numbers into elapsed minutes since midnight (e.g. 10:15 AM = 615m) so cross-department overlaps are caught instantly.</div>
+                  </div>
+
+                  <div class="d-flex flex-wrap gap-3">
+                    <a href="json-import.html" class="btn-hero-primary-unified">
+                      <span>Open JSON Importer</span>
+                      <i class="bi bi-arrow-right arrow-interactive fs-5" aria-hidden="true"></i>
+                    </a>
+                    <button type="button" class="btn-hero-ghost-template" onclick="copyJsonSample(this)">
+                      <i class="bi bi-clipboard"></i>
+                      <span>Copy Sample JSON</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="col-12 col-lg-7">
+                  <div class="mode-preview-window">
+                    <img src="demo-pics/json-import-mode.png" alt="Routine Gen JSON Power User Live Interface" class="mode-preview-img" loading="lazy">
+                  </div>
+                </div>
+              </div>
+
+              <!-- JSON Structure Breakdown -->
+              <div class="border border-secondary border-opacity-25 rounded-3 p-3 bg-black">
+                <div class="text-white fw-bold small mb-2 d-flex align-items-center gap-2">
+                  <i class="bi bi-braces text-primary"></i> JSON Root Schema Specification
+                </div>
+                <div class="table-responsive">
+                  <table class="doc-struct-table">
+                    <thead>
+                      <tr>
+                        <th>Block</th>
+                        <th>Type</th>
+                        <th>Keys &amp; Purpose</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="text-white fw-semibold"><code>settings</code></td>
+                        <td>Object</td>
+                        <td><code>periods, periodDuration, startTime, tiffinPeriod, tiffinDuration, workingDays</code></td>
+                        <td>Global timing defaults. Individual semesters can override with their own independent timing blocks.</td>
+                      </tr>
+                      <tr>
+                        <td class="text-white fw-semibold"><code>teachers</code></td>
+                        <td>Array of Objects</td>
+                        <td><code>name, availableFrom, availableTo</code></td>
+                        <td>Optional availability windows. Faculty omitted from this array remain available all day across college hours.</td>
+                      </tr>
+                      <tr>
+                        <td class="text-white fw-semibold"><code>entries</code></td>
+                        <td>Array of Objects</td>
+                        <td><code>department, semester, day, period, subject, teacher, type</code></td>
+                        <td>Individual lecture entries. <code>type</code> can be <code>"Theory"</code> or <code>"Lab Extended"</code> (2 contiguous slots).</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 4. The Problem Section -->
+    <section id="problem" class="section-padding">
+      <div class="hero-container">
+        <div class="text-center mb-5 reveal">
+          <span class="section-tag">The Manual Nightmare</span>
+          <h2 class="section-heading">Why making timetables by hand fails</h2>
+          <p class="section-lead mx-auto">
+            Spreadsheets don't know that Dr. Sharma is already lecturing in another department when you schedule their class.
+          </p>
+        </div>
+
+        <div class="row g-4">
+          <!-- Card 1 -->
+          <div class="col-12 col-md-4">
+            <div class="bento-card reveal" style="--i:1">
+              <div class="bento-danger-tag">
+                <i class="bi bi-exclamation-triangle-fill" aria-hidden="true"></i> Faculty Double-Booking
+              </div>
+              <h3 class="bento-card-title">One teacher. Two classes. Same time.</h3>
+              <p class="bento-card-text">
+                When multiple academic departments share professors, human coordinators inevitably overlap schedules. You only discover the clash after semester classes have already begun.
+              </p>
+              <div class="bento-preview-box">
+                <div class="text-danger mb-1"><i class="bi bi-x-circle me-1" aria-hidden="true"></i> Clash Detected</div>
+                <div class="text-dim">Prof. Banerjee &rarr; BCA Sem 1 (10:00) &amp; BBA Sem 2 (10:00)</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="col-12 col-md-4">
+            <div class="bento-card reveal" style="--i:2">
+              <div class="bento-danger-tag">
+                <i class="bi bi-clock-history" aria-hidden="true"></i> The Staggered Timings Trap
+              </div>
+              <h3 class="bento-card-title">Period 3 &ne; Period 3 across departments</h3>
+              <p class="bento-card-text">
+                If BCA starts at 09:00 AM (45 min periods) and BBA starts at 09:30 AM (50 min periods), period numbers don't match clock times. Traditional tools fail because they compare slot labels instead of real minutes.
+              </p>
+              <div class="bento-preview-box">
+                <div class="text-warning mb-1"><i class="bi bi-hourglass-split me-1" aria-hidden="true"></i> Fractional Overlap</div>
+                <div class="text-dim">BCA Period 2 (09:45-10:30) overlaps BBA Period 1 (09:30-10:20)</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="col-12 col-md-4">
+            <div class="bento-card reveal" style="--i:3">
+              <div class="bento-danger-tag">
+                <i class="bi bi-arrow-repeat" aria-hidden="true"></i> The Domino Rebuild Disaster
+              </div>
+              <h3 class="bento-card-title">One small change ruins days of work</h3>
+              <p class="bento-card-text">
+                When a teacher suddenly shifts their working days or leaves early on Fridays, manual routines collapse like a house of cards. You are forced to rebuild the entire college schedule by hand.
+              </p>
+              <div class="bento-preview-box">
+                <div class="text-muted mb-1"><i class="bi bi-info-circle me-1" aria-hidden="true"></i> Example: ~14 hours lost</div>
+                <div class="text-dim">Re-aligning 6 semesters &times; 8 periods across 24 professors</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Problem Bridge (P1 Fix) -->
+        <div class="problem-bridge text-center mt-4 reveal">
+          <span class="text-white fw-semibold">The difference:</span> Routine Gen checks real clock minutes, so these three scheduling failures cannot physically happen.
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 5. How It Works (4-Step Guided Flow) -->
+    <section id="how-it-works" class="section-padding" style="background-color: #060608;">
+      <div class="hero-container">
+        <div class="text-center mb-5 reveal">
+          <span class="section-tag">The 4-Step Workflow</span>
+          <h2 class="section-heading">From raw college data to a conflict-free routine</h2>
+          <p class="section-lead mx-auto">
+            A structured, logical pipeline designed around how real academic institutions actually run.
+          </p>
+        </div>
+
+        <div class="row g-4">
+          <!-- Step 1 -->
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="bento-card reveal" style="--i:1">
+              <div class="step-number-badge">01</div>
+              <h3 class="bento-card-title"><i class="bi bi-clock text-dim me-1" aria-hidden="true"></i> Setup Timings</h3>
+              <p class="bento-card-text">
+                Define college start time, period durations, total periods per day, and place your tiffin break.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="bento-card reveal" style="--i:2">
+              <div class="step-number-badge">02</div>
+              <h3 class="bento-card-title"><i class="bi bi-diagram-3 text-dim me-1" aria-hidden="true"></i> Add Departments</h3>
+              <p class="bento-card-text">
+                Create streams and semesters. Give each semester its own independent start clock and lab configuration.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="bento-card reveal" style="--i:3">
+              <div class="step-number-badge">03</div>
+              <h3 class="bento-card-title"><i class="bi bi-person-badge text-dim me-1" aria-hidden="true"></i> Register Faculty</h3>
+              <p class="bento-card-text">
+                List teachers, their active working days, optional available hours windows, and assign their subjects.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="bento-card reveal" style="--i:4">
+              <div class="step-number-badge">04</div>
+              <h3 class="bento-card-title"><i class="bi bi-calendar-check text-dim me-1" aria-hidden="true"></i> Generate &amp; Export</h3>
+              <p class="bento-card-text">
+                One click generates conflict-checked schedules. Resolve unfillable gaps with filler periods and export to Excel/PDF.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Unified CTA Button (P1 Fix) -->
+        <div class="text-center mt-5 reveal">
+          <a href="wizard.html" class="btn-hero-primary-unified">
+            <span>Launch Routine Wizard</span>
+            <i class="bi bi-arrow-right arrow-interactive fs-5" aria-hidden="true"></i>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 6. Features Grid (Expanded to 6 Cards in 3x2 Grid - P1 Fix) -->
+    <section id="features" class="section-padding">
+      <div class="hero-container">
+        <div class="text-center mb-5 reveal">
+          <span class="section-tag">Engine Capabilities</span>
+          <h2 class="section-heading">Built specifically for college complexities</h2>
+          <p class="section-lead mx-auto">
+            Not a generic scheduling toy &mdash; engineered to handle real faculty constraints, practical labs, and departmental autonomy.
+          </p>
+        </div>
+
+        <div class="row g-4">
+          <!-- Feature 1 -->
+          <div class="col-12 col-md-4">
+            <div class="bento-card reveal" style="--i:1">
+              <i class="bi bi-cpu feature-icon text-white" aria-hidden="true"></i>
+              <h3 class="bento-card-title">True Clock-Minute Overlap Math</h3>
+              <p class="bento-card-text">
+                Every period is converted to literal clock minutes since midnight. Clashes are prevented based on real time, regardless of mismatched period counts.
+              </p>
+            </div>
+          </div>
+
+          <!-- Feature 2 -->
+          <div class="col-12 col-md-4">
+            <div class="bento-card reveal" style="--i:2">
+              <i class="bi bi-sliders feature-icon text-white" aria-hidden="true"></i>
+              <h3 class="bento-card-title">Dynamic Faculty Workload Balancing</h3>
+              <p class="bento-card-text">
+                When multiple faculty can teach a subject, classes are assigned to whoever currently has the lightest daily load &mdash; so no teacher ends up with a heavy back-to-back load.
+              </p>
+            </div>
+          </div>
+
+          <!-- Feature 3 (Flask icon replacing eyedropper - P1 Fix) -->
+          <div class="col-12 col-md-4">
+            <div class="bento-card reveal" style="--i:3">
+              <i class="bi bi-flask feature-icon text-success" aria-hidden="true"></i>
+              <h3 class="bento-card-title">Contiguous 2-Period Lab Support</h3>
+              <p class="bento-card-text">
+                Computer labs and practical sessions require contiguous 2-period blocks. The engine ensures the adjacent slot is clear and avoids breaking across tiffin breaks.
+              </p>
+            </div>
+          </div>
+
+          <!-- Feature 4 -->
+          <div class="col-12 col-md-4">
+            <div class="bento-card reveal" style="--i:4">
+              <i class="bi bi-calendar2-week feature-icon text-info" aria-hidden="true"></i>
+              <h3 class="bento-card-title">Teacher Availability Windows</h3>
+              <p class="bento-card-text">
+                Register specific working days and optional clock-time availability windows (e.g. 10:00 AM &ndash; 03:30 PM). Classes are never scheduled outside faculty availability.
+              </p>
+            </div>
+          </div>
+
+          <!-- Feature 5 -->
+          <div class="col-12 col-md-4">
+            <div class="bento-card reveal" style="--i:5">
+              <i class="bi bi-file-earmark-spreadsheet feature-icon text-success" aria-hidden="true"></i>
+              <h3 class="bento-card-title">3 Ingestion Paths &amp; Instant Exports</h3>
+              <p class="bento-card-text">
+                Populate via the step-by-step UI, upload a standardized 3-sheet Excel spreadsheet, or paste live JSON routines. Export print-ready landscape PDFs or full Excel workbooks.
+              </p>
+            </div>
+          </div>
+
+          <!-- Feature 6 -->
+          <div class="col-12 col-md-4">
+            <div class="bento-card reveal" style="--i:6">
+              <i class="bi bi-shield-check feature-icon text-primary" aria-hidden="true"></i>
+              <h3 class="bento-card-title">Conflict Resolver &amp; Session Recovery</h3>
+              <p class="bento-card-text">
+                Unfillable slots get surfaced in an interactive Resolve Conflict screen with instant filler options. All session progress automatically persists in local browser storage.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 7. FAQ Section (Expanded with 2 New Questions - P1/P2 Fix) -->
+    <section id="faq" class="section-padding" style="background-color: #000000; padding-bottom: 2.5rem;">
+      <div class="hero-container">
+        <div class="text-center mb-5 reveal">
+          <span class="section-tag">Got Questions?</span>
+          <h2 class="section-heading">Frequently Asked Questions</h2>
+          <p class="section-lead mx-auto">
+            Everything you need to know about how Routine Gen operates and protects your institutional data.
+          </p>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-12 col-lg-9">
+            <div class="accordion faq-accordion" id="faqAccordion">
+              
+              <!-- Q1 -->
+              <div class="accordion-item reveal" style="--i:1">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="false" aria-controls="faq1">
+                    Is Routine Gen completely free? Do I need to create an account?
+                  </button>
+                </h3>
+                <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Yes, Routine Gen is 100% free and open-source under the MIT license. You do not need an account, email, or credit card. You can start generating schedules immediately in your web browser.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Q2 -->
+              <div class="accordion-item reveal" style="--i:2">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">
+                    Where is my college routine and faculty data stored?
+                  </button>
+                </h3>
+                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Entirely on your local machine. Routine Gen operates 100% client-side using JavaScript. Zero faculty names, contact details, or institutional timetable data are ever transmitted to or stored on remote servers.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Q3 -->
+              <div class="accordion-item reveal" style="--i:3">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">
+                    Can I import my existing schedule data from Microsoft Excel?
+                  </button>
+                </h3>
+                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Yes! You can download our standardized 3-sheet starter workbook (covering Departments &amp; Timing, Subjects &amp; Labs, and Teachers), fill it out in Excel or Google Sheets, and import it directly into Routine Gen in seconds.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Q4 -->
+              <div class="accordion-item reveal" style="--i:4">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4">
+                    How does Routine Gen catch overlaps if semesters have different timings?
+                  </button>
+                </h3>
+                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Routine Gen translates every slot into actual start and end minutes since midnight (e.g. 10:15 AM = 615 minutes). When testing teacher availability, it runs mathematical interval overlap checks instead of comparing period numbers.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Q5 -->
+              <div class="accordion-item reveal" style="--i:5">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5" aria-expanded="false" aria-controls="faq5">
+                    What happens if a class cannot be scheduled due to tight faculty constraints?
+                  </button>
+                </h3>
+                <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Instead of silently breaking your timetable, Routine Gen flags the slot honestly in an interactive <strong>Resolve Conflict</strong> screen. It shows you which faculty were checked and why they failed, and gives you one-click options to insert a Library or filler class.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Q6 (New - Mobile Support) -->
+              <div class="accordion-item reveal" style="--i:6">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6" aria-expanded="false" aria-controls="faq6">
+                    Does Routine Gen work on mobile devices?
+                  </button>
+                </h3>
+                <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Yes. Routine Gen is fully responsive and progressive web app (PWA) ready. You can review schedules, run generator checks, and inspect conflict resolutions from any modern smartphone or tablet browser.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Q7 (New - Post-Generation Editing) -->
+              <div class="accordion-item reveal" style="--i:7">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq7" aria-expanded="false" aria-controls="faq7">
+                    Can I manually edit or adjust the routine after it's generated?
+                  </button>
+                </h3>
+                <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Yes. If an impossible slot occurs, Routine Gen routes you directly into the interactive Resolve Conflict screen where you can assign custom filler periods (such as Library or Seminar hours). You can also export the timetable to Excel (.xlsx) to make freehand institutional edits anytime.
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Smooth Monochromatic Transition Bridge from Dark FAQ (#000000) to Pure White (#ffffff) -->
+    <div class="faq-to-finale-gradient" aria-hidden="true"></div>
+
+    <!-- 8. Final Full-Page Finale Section (Takes 100vh full page with CTA & Compact Footer) -->
+    <section id="finale-section" class="finale-section">
+      <!-- Centered CTA Content -->
+      <div class="finale-content-wrap">
+        <div class="hero-container position-relative">
+          <div class="cta-banner-content text-center mx-auto">
+            <h2 class="hero-title mb-3">
+              <span class="d-block line-1">Ready to generate your college routine</span>
+              <span class="d-block line-2 hero-highlight">without a single clash?</span>
+            </h2>
+            <p class="hero-subtitle mb-4 mx-auto">
+              Built for academic coordinators who would rather spend minutes than days.
+            </p>
+
+            <div class="hero-cta-group">
+              <a href="wizard.html" class="btn-hero-primary-unified">
+                <span>Build Routine</span>
+                <i class="bi bi-arrow-right arrow-interactive fs-5" aria-hidden="true"></i>
               </a>
+              <button type="button" class="btn-hero-ghost-template js-download-excel" title="Download official 3-sheet starter template">
+                <i class="bi bi-file-earmark-excel text-success" aria-hidden="true"></i>
+                <span>Download Excel Template</span>
+              </button>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
 
+      <!-- 9. Monumental Creative-Agency Interactive Footer -->
+      <footer class="hero-footer-monumental" id="interactive-footer">
+        <div class="footer-meta-bar">
+          <div class="footer-meta-left">
+            &copy; 2026 Routine Gen. All Rights Reserved.
+          </div>
+          <div class="footer-meta-right">
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="footer-meta-icon-link" aria-label="GitHub Repository" title="GitHub Repository">
+              <i class="bi bi-github"></i>
+            </a>
+            <a href="#top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="footer-meta-icon-link" aria-label="Back to top" title="Back to top">
+              <i class="bi bi-arrow-up"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Interactive Proximity Typography Stage -->
+        <div class="footer-brand-stage" id="footer-brand-stage" role="region" aria-label="Routine Gen Interactive Wordmark">
+          <!-- Letter-by-Letter Dual-Layer Split Typography -->
+          <div class="footer-wordmark-track" id="footer-wordmark-track" aria-hidden="true">
+            <span class="wordmark-char" data-char="R"><span class="char-outline">R</span><span class="char-fill">R</span></span>
+            <span class="wordmark-char" data-char="O"><span class="char-outline">O</span><span class="char-fill">O</span></span>
+            <span class="wordmark-char" data-char="U"><span class="char-outline">U</span><span class="char-fill">U</span></span>
+            <span class="wordmark-char" data-char="T"><span class="char-outline">T</span><span class="char-fill">T</span></span>
+            <span class="wordmark-char" data-char="I"><span class="char-outline">I</span><span class="char-fill">I</span></span>
+            <span class="wordmark-char" data-char="N"><span class="char-outline">N</span><span class="char-fill">N</span></span>
+            <span class="wordmark-char" data-char="E"><span class="char-outline">E</span><span class="char-fill">E</span></span>
+            <span class="wordmark-space">&nbsp;</span>
+            <span class="wordmark-char" data-char="G"><span class="char-outline">G</span><span class="char-fill">G</span></span>
+            <span class="wordmark-char" data-char="E"><span class="char-outline">E</span><span class="char-fill">E</span></span>
+            <span class="wordmark-char" data-char="N"><span class="char-outline">N</span><span class="char-fill">N</span></span>
+          </div>
+
+          <!-- Screen Reader Accessible Text -->
+          <span class="visually-hidden">Routine Gen</span>
+        </div>
+      </footer>
+    </section>
+  </main>
+
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="js/app.js?v=2.2"></script>
-  <script src="js/excel-import.js"></script>
-
+  <!-- Lenis 60fps Momentum Scrolling -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/hero.js"></script>
   <!-- Progressive Web App Service Worker Registration -->
   <script>
     if ('serviceWorker' in navigator) {

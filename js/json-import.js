@@ -1177,5 +1177,5 @@ elSendBtn.addEventListener('click', () => {
   };
 
   sessionStorage.setItem('routine_maker_json_routine', JSON.stringify(outPayload));
-  window.location.href = 'index.html';
+  window.location.href = 'wizard.html';
 });

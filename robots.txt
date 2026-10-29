@@ -5,6 +5,9 @@ Allow: /
 User-agent: GPTBot
 Allow: /
 
+User-agent: OAI-SearchBot
+Allow: /
+
 User-agent: ChatGPT-User
 Allow: /
 
@@ -23,5 +26,7 @@ Allow: /
 User-agent: Amazonbot
 Allow: /
 
-Sitemap: https://routinegen.vercel.app/sitemap.xml
+User-agent: CCBot
+Allow: /
 
+Sitemap: https://routinegen.vercel.app/sitemap.xml
